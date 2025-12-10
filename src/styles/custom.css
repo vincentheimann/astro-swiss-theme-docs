@@ -2,7 +2,8 @@
 
 /* Enhance code blocks */
 :root {
-  --sl-color-accent: 252, 74, 26; /* Astro Swiss brand color */
+  --sl-color-accent: 252, 74, 26;
+  /* Astro Swiss brand color */
 }
 
 /* Improve spacing for better readability */
@@ -31,4 +32,16 @@
 /* Make badges more prominent */
 .sl-badge {
   font-weight: 500;
+}
+
+/* Fix primary button visibility in light mode */
+:root[data-theme='light'] .sl-link-button.primary {
+  background-color: #0f172a !important;
+  border-color: #0f172a !important;
+  color: white !important;
+}
+
+:root[data-theme='light'] .sl-link-button.primary:hover {
+  background-color: #1e293b !important;
+  border-color: #1e293b !important;
 }
