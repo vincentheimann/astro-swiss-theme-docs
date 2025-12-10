@@ -7,9 +7,9 @@ import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
 Welcome! Let's get your site running and customized in about 10 minutes.
 
-:::note[About This Documentation]
-This documentation covers the **Astro Swiss Theme** (paid version with all features). The free starter theme is available on GitHub with core features. Installation instructions work for both versions.
-:::
+<Aside type="note" title="About This Documentation">
+  This documentation covers the **Astro Swiss Theme** (paid version with all features). The free starter theme is available on GitHub with core features. Installation instructions work for both versions.
+</Aside>
 
 ## Install & Run <sup>2 minutes</sup>
 
@@ -117,7 +117,7 @@ You now have a **multilingual website** with:
 
 <CardGrid>
 
-<Card title="📁 Add Your Team" icon="star">
+<Card title="Add Your Team" icon="star">
 
 Want to add employees?
 
@@ -125,7 +125,7 @@ Want to add employees?
 
 </Card>
 
-<Card title="🎨 Add Your Work" icon="seti:image">
+<Card title="Add Your Work" icon="seti:image">
 
 Want to showcase projects?
 
@@ -133,7 +133,7 @@ Want to showcase projects?
 
 </Card>
 
-<Card title="🎨 Customize Design" icon="pencil">
+<Card title="Customize Design" icon="pencil">
 
 Want to change colors, fonts, or styling?
 
@@ -141,7 +141,7 @@ Want to change colors, fonts, or styling?
 
 </Card>
 
-<Card title="🌐 Add More Languages" icon="translate">
+<Card title="Add More Languages" icon="translate">
 
 Want to support more languages?
 
@@ -149,7 +149,7 @@ Want to support more languages?
 
 </Card>
 
-<Card title="🚀 Deploy Your Site" icon="rocket">
+<Card title="Deploy Your Site" icon="rocket">
 
 Ready to go live?
 
@@ -157,7 +157,7 @@ Ready to go live?
 
 </Card>
 
-<Card title="❓ Need Help?" icon="information">
+<Card title="Need Help?" icon="information">
 
 Questions or issues?
 

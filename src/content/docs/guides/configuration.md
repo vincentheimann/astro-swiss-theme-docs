@@ -5,7 +5,11 @@ description: Configure your Astro Swiss Theme with Astro, Starwind, i18n, and Ty
 
 import { Aside, Tabs, TabItem, Code } from '@astrojs/starlight/components';
 
-Learn how to configure your Astro Swiss Theme for your specific needs.
+Configure your Astro Swiss Theme for your specific needs. These configuration options apply to both the free starter theme and the paid version.
+
+<Aside type="tip" title="Quick Navigation">
+  Use the table below to jump to the configuration you need, or scroll through the guide for comprehensive coverage.
+</Aside>
 
 ## Quick Reference
 

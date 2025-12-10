@@ -5,7 +5,14 @@ description: Deploy your Astro Swiss Theme to production with Vercel, Netlify, C
 
 import { Aside, Steps, Tabs, TabItem, Card, CardGrid } from '@astrojs/starlight/components';
 
-Deploy your Astro Swiss Theme site to production in minutes.
+Deploy your Astro Swiss Theme site to production in minutes. These deployment instructions work for both the free starter theme and the paid version.
+
+<Aside type="note" title="Prerequisites">
+  Before deploying, ensure you have:
+  - Completed local development and testing
+  - Created a GitHub repository for your project
+  - Signed up for your chosen hosting platform (Vercel, Netlify, etc.)
+</Aside>
 
 ## Building for Production
 

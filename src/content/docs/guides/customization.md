@@ -5,7 +5,7 @@ description: Customize your Astro Swiss Theme with components, pages, assets, an
 
 import { Aside, Steps, Card, CardGrid, Tabs, TabItem } from '@astrojs/starlight/components';
 
-Learn how to customize your Astro Swiss Theme to match your brand and needs.
+Customize your Astro Swiss Theme to match your brand and needs. This guide covers customization techniques that work with both the free starter theme and the paid version.
 
 ## Editing Site Content
 
