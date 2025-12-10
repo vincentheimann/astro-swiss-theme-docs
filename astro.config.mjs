@@ -13,9 +13,9 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/vincentheimann/astro-swiss-free-starter-theme' },
 				{ icon: 'email', label: 'Email', href: 'mailto:hello@astroswiss.com' },
 			],
-			editLink: {
-				baseUrl: 'https://github.com/vincentheimann/astro-swiss-free-starter-theme/edit/main/docs/',
-			},
+			// editLink: {
+			// 	baseUrl: 'https://github.com/vincentheimann/astro-swiss-free-starter-theme/edit/main/docs/',
+			// },
 			customCss: [
 				'./src/styles/custom.css',
 			],
