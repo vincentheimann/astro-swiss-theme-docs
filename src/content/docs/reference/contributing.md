@@ -21,8 +21,8 @@ Learn how to contribute to the Astro Swiss Theme project.
 
 1. **Fork and clone the repository:**
    ```bash
-   git clone https://github.com/vincentheimann/astro-swiss-starter-theme.git
-   cd astro-swiss-starter-theme
+   git clone https://github.com/vincentheimann/astro-swiss-free-starter-theme.git
+   cd astro-swiss-free-starter-theme
    ```
 
 2. **Install dependencies:**

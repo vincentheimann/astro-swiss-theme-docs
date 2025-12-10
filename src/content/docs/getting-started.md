@@ -7,6 +7,10 @@ import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
 Welcome! Let's get your site running and customized in about 10 minutes.
 
+:::note[About This Documentation]
+This documentation covers the **Astro Swiss Theme** (paid version with all features). The free starter theme is available on GitHub with core features. Installation instructions work for both versions.
+:::
+
 ## Install & Run <sup>2 minutes</sup>
 
 <Steps>
@@ -14,8 +18,9 @@ Welcome! Let's get your site running and customized in about 10 minutes.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/vincentheimann/astro-swiss-starter-theme.git
-   cd astro-swiss-starter-theme
+   # Free starter theme (public repository)
+   git clone https://github.com/vincentheimann/astro-swiss-free-starter-theme.git
+   cd astro-swiss-free-starter-theme
    ```
 
 2. **Install dependencies**
