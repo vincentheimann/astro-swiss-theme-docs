@@ -1,40 +1,110 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Astro Swiss Theme Documentation
+description: Build beautiful multilingual websites with Astro, Starwind UI, and i18n support.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: A modern, multilingual Astro starter theme with built-in internationalization, Starwind UI components, and Tailwind CSS v4.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/docs/homepage-light.png
+    alt: Astro Swiss Theme homepage showcase
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started in 10 Minutes
+      link: /getting-started/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/vincentheimann/astro-swiss-free-starter-theme
       icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Why Astro Swiss Theme?
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="🚀 Astro Powered" icon="astro">
+		Built on Astro 5+ for blazing-fast performance and zero JavaScript by default. Get perfect Lighthouse scores out of the box.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="🌍 Multilingual Ready" icon="translate">
+		Complete i18n support with French and German included. Add more languages in minutes with our simple translation system.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="🎨 Starwind UI" icon="puzzle">
+		Beautiful, accessible components powered by Starwind UI and Tailwind CSS v4. Dark mode included.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="⚡ Developer Experience" icon="rocket">
+		TypeScript, hot reload, path aliases, and excellent documentation. Start customizing in minutes, not hours.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+</CardGrid>
+
+## What's Included
+
+<CardGrid>
+	<Card title="Modern Tech Stack" icon="approve-check">
+		- Astro 5+ framework
+		- Starwind UI components
+		- Tailwind CSS v4
+		- TypeScript support
+		- i18n routing
+	</Card>
+	<Card title="Pre-built Components" icon="puzzle">
+		- Responsive header & navigation
+		- Portfolio/project showcase
+		- Team member profiles
+		- Contact forms
+		- Language selector
+		- Dark mode toggle
+	</Card>
+	<Card title="Production Ready" icon="rocket">
+		- SEO optimized
+		- Accessibility (WCAG 2.1 AA)
+		- Mobile responsive
+		- Fast page loads
+		- Clean code structure
+	</Card>
+</CardGrid>
+
+## Quick Start
+
+Get your site running in about 10 minutes:
+
+```bash
+# Clone the repository
+git clone https://github.com/vincentheimann/astro-swiss-starter-theme.git
+cd astro-swiss-starter-theme
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Then customize your brand colors, company info, and content. **[Follow the complete guide →](/getting-started/)**
+
+## Perfect For
+
+- 🏢 **Business websites** - Professional services, agencies, consultancies
+- 💼 **Freelance portfolios** - Showcase your work in multiple languages
+- 🌐 **Multilingual sites** - Especially Swiss/European markets (FR, DE, IT, RM)
+- 🎯 **Landing pages** - Fast, modern, conversion-optimized
+
+## Next Steps
+
+<CardGrid>
+	<Card title="Getting Started" icon="rocket">
+		Follow our 10-minute quick start guide to get your site up and running.
+		
+  [Start Now →](/getting-started/)
+	</Card>
+	<Card title="Browse Guides" icon="open-book">
+		Learn how to customize, style, and deploy your site with our comprehensive guides.
+		
+  [View Guides →](/guides/configuration/)
+	</Card>
+	<Card title="Need Help?" icon="information">
+		Check our FAQ, browser support, and community resources.
+		
+  [Get Support →](/reference/support/)
 	</Card>
 </CardGrid>

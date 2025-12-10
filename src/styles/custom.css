@@ -1,0 +1,34 @@
+/* Custom styles for Astro Swiss Theme documentation */
+
+/* Enhance code blocks */
+:root {
+  --sl-color-accent: 252, 74, 26; /* Astro Swiss brand color */
+}
+
+/* Improve spacing for better readability */
+.sl-markdown-content h2 {
+  margin-top: 2.5rem;
+}
+
+.sl-markdown-content h3 {
+  margin-top: 2rem;
+}
+
+/* Better visual hierarchy for callouts */
+.starlight-aside {
+  margin: 1.5rem 0;
+}
+
+/* Enhance table styling */
+.sl-markdown-content table {
+  font-size: 0.95rem;
+}
+
+.sl-markdown-content th {
+  font-weight: 600;
+}
+
+/* Make badges more prominent */
+.sl-badge {
+  font-weight: 500;
+}
