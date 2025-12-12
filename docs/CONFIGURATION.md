@@ -49,6 +49,8 @@ The default language for your site. This language will be served at the root pat
 defaultLocale: "fr"  // French is default
 ```
 
+**When to modify**: Change this when targeting a different primary market or when your main audience speaks a different language.
+
 #### `i18n.locales`
 
 Array of all supported language codes. Must match the languages defined in [src/i18n/ui.ts](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/i18n/ui.ts).
@@ -57,6 +59,8 @@ Array of all supported language codes. Must match the languages defined in [src/
 ```javascript
 locales: ["fr", "de", "it", "rm"]  // Support 4 languages
 ```
+
+**When to modify**: Update when adding or removing language support. See [ADDING_LANGUAGES.md](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/docs/ADDING_LANGUAGES.md) for detailed instructions.
 
 #### `i18n.routing.prefixDefaultLocale`
 
@@ -68,13 +72,15 @@ prefixDefaultLocale: false  // French at /, German at /de/
 prefixDefaultLocale: true   // French at /fr/, German at /de/
 ```
 
-### Adding a New Locale
+**When to modify**: Set to `true` if you need consistent URL patterns across all languages for SEO, analytics tracking, or CDN configuration.
 
-1. Add the locale code to the `locales` array
-2. Add translations in [src/i18n/ui.ts](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/i18n/ui.ts)
-3. Create page folder in `src/pages/[locale]/`
+### Troubleshooting Configuration
 
-See [ADDING_LANGUAGES.md](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/docs/ADDING_LANGUAGES.md) for detailed instructions.
+**Problem**: Added a locale but pages return 404
+**Solution**: Ensure the locale exists in both `astro.config.mjs` and `src/i18n/ui.ts`, and that you've created the corresponding page folder.
+
+**Problem**: Middleware redirects to wrong language
+**Solution**: Check that your `defaultLang` in `src/i18n/ui.ts` matches `defaultLocale` in `astro.config.mjs`.
 
 ---
 

@@ -1,49 +1,144 @@
-# Starlight Starter Kit: Basics
+# Astro Swiss Theme Documentation
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Official documentation for the Astro Swiss Starter Theme – a modern, multilingual Astro starter with Starwind UI components and Tailwind CSS v4.
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/vincentheimann/astro-swiss-starter-theme.git
+cd astro-swiss-starter-theme
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Visit `http://localhost:4321` to see your site.
+
+## Features
+
+- **🌍 Multilingual** - Built-in support for French and German, easily extendable
+- **🎨 Modern Design** - Starwind UI components with Tailwind CSS v4
+- **🌓 Dark Mode** - Automatic theme switching with user preference persistence
+- **📱 Responsive** - Mobile-first design that works on all devices
+- **⚡ Fast** - Built with Astro for optimal performance
+- **♿ Accessible** - WCAG 2.1 Level AA compliant
+- **🔍 SEO Ready** - Semantic HTML, meta tags, and sitemap generation
+
+## Versions
+
+| Feature | Free Theme | Premium Theme |
+|---------|-----------|---------------|
+| Full source code | ✅ | ✅ |
+| Multilingual (i18n) | ✅ | ✅ |
+| Dark mode | ✅ | ✅ |
+| Starwind UI components | ✅ | ✅ |
+| Tailwind CSS v4 | ✅ | ✅ |
+| **Use for client projects** | ❌ | ✅ |
+| **Unlimited end products** | Single project | ✅ Unlimited |
+| **Priority support** | Community | ✅ 24-48h email |
+| **Commercial rights** | Personal use only | ✅ Full commercial |
+| **Continuous updates** | Security fixes | ✅ New features |
+| Documentation | ✅ | ✅ |
+| Price | Free | [Purchase](https://themeforest.net) |
+
+> [!NOTE]
+> **Free Theme**: Perfect for learning, personal projects, and evaluation.
+> **Premium Theme**: Designed for professionals building client projects with full commercial rights.
+
+---
+
+## Documentation
+
+### Getting Started
+- **[Getting Started](docs/GETTING_STARTED.md)** - Installation and initial setup
+- **[Configuration](docs/CONFIGURATION.md)** - Configure Astro, i18n, and Starwind
+- **[Data Management](docs/DATA_MANAGEMENT.md)** - Add employees, projects, and content
+
+### Customization
+- **[Customization](docs/CUSTOMIZATION.md)** - Customize components and layouts
+- **[Styling](docs/STYLING.md)** - Modify colors, fonts, and design tokens
+- **[Adding Languages](docs/ADDING_LANGUAGES.md)** - Add support for new languages
+
+### Deployment
+- **[Deployment](docs/DEPLOYMENT.md)** - Deploy to Vercel, Netlify, Cloudflare, and more
+- **[Browser Support](docs/BROWSER_SUPPORT.md)** - Compatibility and testing information
+
+### Contributing
+- **[Contributing](docs/CONTRIBUTING.md)** - Contribution guidelines for developers
+- **[Support](docs/SUPPORT.md)** - Get help and report issues
+- **[Licensing](docs/LICENSING.md)** - Understand free vs premium versions
+
+## Tech Stack
+
+- **[Astro](https://astro.build)** - Static site generator
+- **[Starwind UI](https://starwind.dev)** - Component library
+- **[Tailwind CSS v4](https://tailwindcss.com)** - Utility-first CSS framework
+- **TypeScript** - Type-safe JavaScript
+- **CSS Variables** - Theme system with dark mode support
+
+## Commands
+
+All commands run from the project root:
+
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run astro check` | Run TypeScript type checking |
+
+## Project Structure
 
 ```
-npm create astro@latest -- --template starlight
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
+astro-swiss-starter-theme/
+├── docs/              # Documentation files
+├── public/            # Static assets
 ├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+│   ├── assets/       # Images and media files
+│   ├── components/   # Astro components
+│   ├── i18n/         # Translations and i18n utilities
+│   ├── layouts/      # Page layouts
+│   ├── pages/        # Routes (file-based routing)
+│   ├── styles/       # CSS files and design tokens
+│   └── consts.ts     # Global constants
+├── astro.config.mjs  # Astro configuration
+└── package.json
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## Support
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+- **Documentation Issues**: Open an issue on GitHub
+- **Theme Support**: See [Support](docs/SUPPORT.md) for assistance options
+- **Astro Community**: Join the [Astro Discord](https://astro.build/chat)
 
-Static assets, like favicons, can be placed in the `public/` directory.
+## License & Pricing
 
-## 🧞 Commands
+### Free Version (This Repository)
+- ✅ Personal use and evaluation
+- ✅ Non-commercial projects
+- ✅ Learning and experimentation
+- ❌ Client projects
+- ❌ Commercial use
 
-All commands are run from the root of the project, from a terminal:
+### Premium Version
+- ✅ **Use for unlimited client projects**
+- ✅ **Unlimited end products**
+- ✅ **Full commercial rights**
+- ✅ **Priority email support (24-48h)**
+- ✅ **Continuous feature updates**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+**[Upgrade to Premium →](https://themeforest.net)**
 
-## 👀 Want to learn more?
+---
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+**Questions about licensing?** Contact: heimvin@gmail.com
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: December 2024

@@ -6,12 +6,28 @@
 
 ## Table of Contents
 
+- [Quick Reference](#quick-reference)
 - [Editing Site Content](#editing-site-content)
 - [Customizing Components](#customizing-components)
 - [Adding New Pages](#adding-new-pages)
 - [Working with Assets](#working-with-assets)
 - [Layout Customization](#layout-customization)
 - [Component Library](#component-library)
+
+## Quick Reference
+
+| Task | File | Section |
+|------|------|---| 
+| Change logo | `Header.astro` | [Header Component](#header-component) |
+| Update company info | `consts.ts` | [Author & Contact](#author--contact-information) |
+| Modify colors | `tokens.css` | See [STYLING.md](STYLING.md) |
+| Add team member | `consts.ts`, `ui.ts` | See [DATA_MANAGEMENT.md](DATA_MANAGEMENT.md#adding-an-employee) |
+| Add portfolio item | `data/portfolio/` | See [DATA_MANAGEMENT.md](DATA_MANAGEMENT.md#adding-a-portfolio-project) |
+| Create new page | `pages/` | [Adding New Pages](#adding-new-pages) |
+| Upload images | `assets/` or `public/` | [Working with Assets](#working-with-assets) |
+| Add fonts | `public/fonts/`, `global.css` | [Fonts](#fonts) |
+
+---
 
 ## Editing Site Content
 

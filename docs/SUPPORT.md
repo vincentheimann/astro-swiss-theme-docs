@@ -8,63 +8,57 @@ Thank you for purchasing the Astro Swiss Starter Theme! We're here to help you g
 
 ## What's Included in Support
 
-### ✅ Covered by Support
+### Free Version
 
-- **Installation Help** - Assistance with setting up the theme
-- **Configuration Questions** - Help with theme configuration and settings
-- **Bug Fixes** - Resolution of any bugs or issues in the theme code
-- **Documentation Clarification** - Explaining how features work
-- **Update Assistance** - Help with updating to new versions
-- **Best Practices** - Guidance on using the theme effectively
+- ✅ **Community Support** - GitHub Issues and Astro Discord
+- ✅ **Documentation Access** - Full documentation available
+- ✅ **Security Updates** - Critical security fixes
+- ❌ Priority email support
+- ❌ Feature updates (security only)
 
-### ❌ Not Covered by Support
+### Premium Version
 
-- **Custom Development** - Building new features or custom functionality
-- **Third-Party Integrations** - Integrating with external services not documented
-- **Hosting Issues** - Server configuration or hosting provider problems
-- **Content Creation** - Writing content or creating images for your site
-- **General Web Development** - Teaching HTML, CSS, JavaScript, or Astro basics
-- **Customization Services** - Modifying the theme beyond configuration
-
-> [!NOTE]
-> If you need custom development or extensive customization, we can discuss this separately. Contact us for a quote.
+- ✅ **Priority Email Support** - 24-48 hour response time
+- ✅ **6 Months Support Included** - Extensible
+- ✅ **Installation Help** - Assistance with setup
+- ✅ **Configuration Questions** - Help with settings and configuration
+- ✅ **Bug Fixes** - Resolution of issues in theme code
+- ✅ **Documentation Clarification** - Explaining how features work
+- ✅ **Update Assistance** - Help with updating to new versions
+- ✅ **Best Practices Guidance** - Professional recommendations
+- ✅ **Continuous Feature Updates** - New components and improvements
 
 ---
 
 ## How to Get Support
 
-### 1. Check the Documentation First
+### Free Version Support
 
-Before reaching out, please check our comprehensive documentation:
+1. **Check the Documentation First**
+   - [Getting Started Guide](GETTING_STARTED.md)
+   - [Configuration](CONFIGURATION.md)
+   - [Customization Guide](CUSTOMIZATION.md)
+   - [All other guides](../README.md)
 
-- **[Getting Started Guide](GETTING_STARTED.md)** - Installation and basic setup
-- **[Data Management](DATA_MANAGEMENT.md)** - Adding content and data
-- **[Styling Guide](STYLING.md)** - Customizing colors and design
-- **[Customization Guide](CUSTOMIZATION.md)** - Advanced customization
-- **[Configuration](CONFIGURATION.md)** - Configuration options
-- **[Adding Languages](ADDING_LANGUAGES.md)** - Internationalization
-- **[Deployment](DEPLOYMENT.md)** - Deploying your site
-- **[Browser Support](BROWSER_SUPPORT.md)** - Browser compatibility
+2. **Community Support**
+   - **GitHub Issues**: [Report bugs and issues](https://github.com/vincentheimann/astro-swiss-starter-theme/issues)
+   - **Astro Discord**: [Community help](https://astro.build/chat)
+   - **Stack Overflow**: Tag questions with `astro` and `starwind`
 
-### 2. Check Common Issues (FAQ)
-
-See the [FAQ section](#frequently-asked-questions) below for common questions and solutions.
-
-### 3. Contact Support
-
-If you can't find the answer in the documentation:
-
-**Email Support**: heimvin@gmail.com
-
-**Response Time**: 24-48 hours (Monday-Friday, excluding Swiss holidays)
-
-**Support Period**: 6 months from purchase date (as per ThemeForest standard)
+3. **Self-Service Diagnostics**
+   - See [diagnostics section](#before-contacting-support-run-diagnostics) below
 
 ---
 
-## When Contacting Support
+### Premium Version Support
 
-To help us assist you quickly, please include:
+**Email**: heimvin@gmail.com
+
+**Response Time**: 24-48 hours (Monday-Friday, excluding Swiss holidays)
+
+**Support Period**: 6 months from purchase date (extensible)
+
+**When Contacting Premium Support**, please include:
 
 1. **Your Purchase Code** (from ThemeForest)
 2. **Theme Version** (check `package.json`)
@@ -74,7 +68,7 @@ To help us assist you quickly, please include:
 6. **Browser and OS** you're using
 7. **URL** of your site (if deployed)
 
-### Example Support Request
+**Example Support Request**
 
 ```
 Subject: Issue with Dark Mode Toggle
@@ -91,9 +85,36 @@ Steps to Reproduce:
 2. Click the theme toggle button in header
 3. Nothing happens
 
+Diagnostics Run:
+- npm run astro check: No errors
+- Browser console: No JavaScript errors
+- localStorage: theme value not updating
+
 Screenshot: [attached]
 Site URL: https://mysite.com
 ```
+
+### Before Contacting Support: Run Diagnostics
+
+> [!TIP]
+> **Self-Service Troubleshooting**
+> 
+> Run these commands to identify common issues:
+> ```bash
+> # Check for TypeScript errors
+> npm run astro check
+> 
+> # Test production build
+> npm run build
+> 
+> # Check browser console for JavaScript errors
+> # Open DevTools (F12) and check the Console tab
+> ```
+> 
+> Many issues can be resolved by:
+> - Clearing browser cache and localStorage
+> - Deleting `node_modules` and running `npm install` again
+> - Checking that all files match the latest theme version
 
 ---
 
@@ -231,6 +252,7 @@ Need support beyond the 6-month period? Contact us about extended support option
 
 ---
 
-**Last Updated**: December 1, 2024
+> [!NOTE]
+> **Getting the Most From Support**: The more detailed information you provide (error messages, steps to reproduce, diagnostics results), the faster we can help resolve your issue.
 
 Thank you for choosing the Astro Swiss Starter Theme! 🚀

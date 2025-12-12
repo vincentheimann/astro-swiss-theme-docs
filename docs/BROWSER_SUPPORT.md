@@ -154,6 +154,9 @@ When customizing the theme, we recommend testing on:
 - [Firefox Developer Tools](https://firefox-source-docs.mozilla.org/devtools-user/) - Responsive design mode
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse) - Performance auditing
 
+> [!TIP]
+> **Prioritize based on your analytics**: Review your website's actual browser usage data to determine which browsers are most important for your audience before extensive testing.
+
 ---
 
 ## Progressive Enhancement
@@ -191,6 +194,7 @@ The theme is built with **progressive enhancement** in mind:
 
 ---
 
-**Last Updated**: December 1, 2024
+> [!NOTE]
+> Browser versions and capabilities evolve rapidly. For the most current compatibility information, consult [Can I Use](https://caniuse.com/) when using new web features.
 
 For any browser-specific issues, please report them via [GitHub Issues](https://github.com/vincentheimann/astro-swiss-starter-theme/issues).

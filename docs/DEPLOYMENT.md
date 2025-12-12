@@ -57,6 +57,22 @@ dist/
 
 ## Deployment Platforms
 
+### Choosing a Platform
+
+All platforms listed support Astro and offer free tiers. Choose based on your needs:
+
+| Platform | Best For | Free Tier | Build Time | Notes |
+|----------|----------|-----------|------------|-------|
+| **Vercel** | Astro-optimized, fastest setup | Yes | ~1-2 min | Auto-detects Astro, zero config |
+| **Netlify** | Custom build hooks, forms | Yes | ~2-3 min | Great for form handling |
+| **Cloudflare Pages** | Global CDN, edge functions | Yes | ~1-2 min | Excellent performance worldwide |
+| **GitHub Pages** | Simple static hosting | Yes | ~3-5 min | Requires workflow setup |
+
+> [!TIP]
+> **Quick Recommendation**: For most users, **Vercel** offers the easiest setup with automatic Astro detection and excellent performance.
+
+---
+
 ### Vercel (Recommended)
 
 **Why Vercel?**
@@ -83,7 +99,7 @@ dist/
    - Vercel auto-detects Astro and configures build settings
    - Click "Deploy"
 
-**Build Settings:**
+**Build Settings** (auto-configured):
 - **Framework Preset:** Astro
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`

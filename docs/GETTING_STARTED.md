@@ -1,10 +1,13 @@
 # Getting Started
 
-Welcome! Let's get your site running and customized in about 10 minutes.
+> [!IMPORTANT]
+> **License**: This is the free version for personal use and evaluation. For client projects and commercial use, [upgrade to Premium](https://themeforest.net).
+
+Get your site running and customized quickly with this guide.
 
 ---
 
-## Install & Run (2 minutes)
+## Installation
 
 ```bash
 # Clone the repository
@@ -30,26 +33,29 @@ Try the dark mode toggle in the header:
 
 ---
 
-## Make It Yours (8 minutes)
+## Initial Configuration
 
-### 1. Update Your Company Info (3 minutes)
+> [!TIP]
+> **For experienced developers**: Use your editor's search/replace feature to update all instances of example data at once. Check `src/consts.ts` and `src/i18n/ui.ts` for all configurable values.
+
+### 1. Update Company Information
 
 Open `src/consts.ts` and update:
 
 ```typescript
 export const COMPANY: CompanyInfo = {
-    name: "Your Company Name",           // ← Change this
-    address: "Your Street Address",      // ← And this
-    city: "CH-1000 Your City",          // ← And this
-    phone: "+41 XX XXX XX XX",          // ← Your phone
-    email: "contact@yourcompany.com",   // ← Your email
+    name: "Your Company Name",
+    address: "Your Street Address",
+    city: "CH-1000 Your City",
+    phone: "+41 XX XXX XX XX",
+    email: "contact@yourcompany.com",
     // ... rest stays the same for now
 };
 ```
 
-Save and watch your browser update instantly!
+Save and watch your browser update instantly with hot module replacement.
 
-### 2. Change Your Brand Colors (2 minutes)
+### 2. Configure Brand Colors
 
 Open `src/styles/tokens.css` and update the accent color:
 
@@ -59,9 +65,9 @@ Open `src/styles/tokens.css` and update the accent color:
 }
 ```
 
-Try it! The theme will update immediately.
+The theme will update immediately in your browser.
 
-### 3. Update Site Name & Description (3 minutes)
+### 3. Update Site Metadata
 
 Open `src/i18n/ui.ts` and find the `fr:` section (French):
 
@@ -75,17 +81,18 @@ fr: {
 }
 ```
 
-Do the same for the `de:` section (German) if you're using both languages.
+Repeat for the `de:` section (German) if you're using both languages.
 
 ---
 
-## What You Just Built
+## What You Have
 
-You now have a **multilingual website** with:
-- 🌍 French & German language support
-- 🌓 Automatic dark/light mode
-- 📱 Mobile-responsive design
-- ⚡ Blazing-fast performance
+Your site now includes:
+- Multilingual support (French & German)
+- Automatic dark/light mode with user preference persistence
+- Fully responsive, mobile-first design
+- Optimized performance with Astro's static site generation
+- Built-in accessibility features (WCAG 2.1 Level AA)
 
 ---
 
@@ -108,12 +115,23 @@ Ready to go live? → [Deployment Guide](DEPLOYMENT.md)
 
 ---
 
+## Verify Your Setup
+
+Before moving forward, confirm:
+- [ ] Dev server is running without errors
+- [ ] Site loads at `http://localhost:4321`
+- [ ] Dark mode toggle works
+- [ ] Language selector displays both French and German
+- [ ] Your company information displays correctly
+
 ## Need Help?
 
-- **All Documentation**: [README](../README.md#-documentation)
-- **Astro Discord**: [astro.build/chat](https://astro.build/chat)
+- **Documentation**: [Full documentation listing](../README.md)
+- **Community**: [Astro Discord](https://astro.build/chat)
 - **Issues**: [GitHub Issues](https://github.com/vincentheimann/astro-swiss-starter-theme/issues)
+- **Support**: See [Support Guide](SUPPORT.md) for assistance options
 
 ---
 
-**Tip**: Keep the dev server running (`npm run dev`) while you make changes. Everything updates automatically!
+> [!NOTE]
+> Keep the dev server running (`npm run dev`) while making changes. Hot module replacement will update your browser automatically.

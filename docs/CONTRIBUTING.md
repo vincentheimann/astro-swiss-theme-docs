@@ -2,6 +2,9 @@
 
 ← [Back to README](../README.md) | [Getting Started](GETTING_STARTED.md) | [All Docs](../README.md#-full-documentation)
 
+> [!NOTE]
+> This repository contains the **free version** of the Astro Swiss Theme. Premium version source code is maintained separately and includes additional licensing rights and priority support.
+
 ---
 
 ## Table of Contents
@@ -51,6 +54,14 @@
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run astro check` | Run TypeScript type checking |
+
+### Recommended VS Code Extensions
+
+For the best development experience:
+- **Astro** - Official Astro language support
+- **Tailwind CSS IntelliSense** - Autocomplete for Tailwind classes
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
 
 ---
 

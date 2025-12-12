@@ -105,6 +105,26 @@ If you leave the `portrait` field empty, the component will automatically genera
 2. The employee will automatically appear in the Team section
 3. Check both language versions to ensure translations are correct
 
+### Managing Multiple Employees Efficiently
+
+> [!TIP]
+> **Batch Operations for Senior Developers**
+> - Use your code editor's multi-cursor feature (Alt+Click in VS Code) for repetitive edits across multiple employees
+> - Maintain a spreadsheet template for collecting employee data before adding to code
+> - Consider creating a script if managing 10+ employees regularly
+
+### Data Validation
+
+Required fields for employees:
+- ✅ `id` (unique 3-letter code)
+- ✅ `name` (full name)
+- ✅ Translations for `.title` and `.bio` in **all** supported languages
+
+Optional fields:
+- `portrait` (will use auto-generated avatar if empty)
+- `email`, `phone` (contact information)
+- `socials` (all fields can be empty strings)
+
 ---
 
 ## Adding a Portfolio Project

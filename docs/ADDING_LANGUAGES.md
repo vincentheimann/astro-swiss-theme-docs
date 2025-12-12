@@ -146,7 +146,27 @@ Make sure to include all these keys (copy from existing languages):
 
 Some values like `author.email` and `author.phone` should be the same across all languages (unless you have different contact info per region).
 
-## Folder Structure
+### Professional Translation Considerations
+
+> [!NOTE]
+> **Using Translation Services**
+> - Tools like DeepL or Google Translate can provide initial drafts
+> - Always have a native speaker review translations for accuracy and cultural appropriateness
+> - Consider professional translation services for business-critical content
+> - Test translations in context, not just as individual strings
+
+### Translation Quality Checklist
+
+Before deploying a new language:
+- [ ] All translation keys present (no missing translations)
+- [ ] Native speaker reviewed content
+- [ ] Cultural appropriateness verified (idioms, references)
+- [ ] Date and time formats localized if needed
+- [ ] Currency symbols correct for region
+- [ ] Tested in browser with correct language setting
+- [ ] No text overflow or layout issues
+
+---
 
 ```
 src/

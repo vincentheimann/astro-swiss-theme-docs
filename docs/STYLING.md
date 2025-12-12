@@ -191,9 +191,17 @@ Applied when `data-theme="dark"` or `.dark` class is set:
 }
 ```
 
-### Theme Initialization
+### Theme System Overview
 
-The [BaseLayout.astro](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/layouts/BaseLayout.astro) includes an inline script to prevent FOUC (Flash of Unstyled Content):
+The theme supports automatic light/dark mode that:
+1. Checks user's system preference on first visit
+2. Allows manual toggle override
+3. Saves preference in browser localStorage
+4. Applies instantly without page reload
+
+### How It Works (Technical)
+
+Theme initialization happens in [BaseLayout.astro](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/layouts/BaseLayout.astro) using an inline script to prevent FOUC (Flash of Unstyled Content):
 
 ```javascript
 const isDark =
@@ -205,7 +213,7 @@ document.documentElement.classList.toggle("dark", isDark);
 document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
 ```
 
-This runs before page render to apply the correct theme immediately.
+This script runs before the page renders, ensuring the correct theme displays immediately.
 
 ### Theme Toggle Component
 
