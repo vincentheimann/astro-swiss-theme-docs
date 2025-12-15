@@ -5,6 +5,8 @@ description: Deploy your Astro Swiss Theme to production with Vercel, Netlify, C
 
 import { Aside, Steps, Tabs, TabItem, Card, CardGrid } from '@astrojs/starlight/components';
 
+**Goal:** Deploy to Netlify in 5 minutes.
+
 Deploy your Astro Swiss Theme site to production in minutes. These deployment instructions work for both the free starter theme and the paid version.
 
 <Aside type="note" title="Prerequisites">
@@ -57,38 +59,13 @@ dist/
 
 ---
 
-## Deployment Platforms
+## Deploy to Netlify (Primary)
 
-### Vercel (Recommended)
-
-**Why Vercel?**
-- Zero-config deployment for Astro
-- Automatic HTTPS
-- Global CDN
-- Preview deployments for PRs
-
-<Steps>
-
-1. **Connect via GitHub:**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Vercel auto-detects Astro and configures build settings
-   - Click "Deploy"
-
-2. **Or deploy via CLI:**
-   ```bash
-   npm i -g vercel
-   vercel
-   ```
-
-</Steps>
-
-**Build Settings:**
-- **Framework Preset:** Astro
-- **Build Command:** `npm run build`
-- **Output Directory:** `dist`
-
----
+**Why Netlify?**
+- Simple configuration
+- Automatic HTTPS & CDN
+- GitHub integration
+- Free tier available
 
 ### Netlify
 
@@ -120,75 +97,19 @@ dist/
 
 ---
 
-### Cloudflare Pages
+## Alternative: Vercel
 
-<Steps>
+Vercel auto-detects Astro projects  - no configuration file needed:
 
-1. **Via Dashboard:**
-   - Go to [Cloudflare Pages](https://pages.cloudflare.com)
-   - Connect your GitHub repository
-   - Configure build settings:
-     - **Build command:** `npm run build`
-     - **Build output:** `dist`
-     - **Framework preset:** Astro
+1. Go to [vercel.com](https://vercel.com) and import your GitHub repository
+2. Vercel automatically configures build settings
+3. Click "Deploy"
 
-2. **Via Wrangler CLI:**
-   ```bash
-   npm install -g wrangler
-   wrangler pages deploy dist
-   ```
-
-</Steps>
-
----
-
-### GitHub Pages
-
-<Steps>
-
-1. **Install Astro adapter:**
-   ```bash
-   npm install @astrojs/github-pages
-   ```
-
-2. **Update `astro.config.mjs`:**
-   ```javascript title="astro.config.mjs" ins={3-4}
-   import { defineConfig } from 'astro/config';
-   
-   export default defineConfig({
-     site: 'https://username.github.io',
-     base: '/repo-name',
-   });
-   ```
-
-3. **Create `.github/workflows/deploy.yml`:**
-   ```yaml title=".github/workflows/deploy.yml"
-   name: Deploy to GitHub Pages
-   
-   on:
-     push:
-       branches: [ main ]
-   
-   jobs:
-     build:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-         - uses: actions/setup-node@v3
-           with:
-             node-version: 18
-         - run: npm ci
-         - run: npm run build
-         - uses: peaceiris/actions-gh-pages@v3
-           with:
-             github_token: ${{ secrets.GITHUB_TOKEN }}
-             publish_dir: ./dist
-   ```
-
-4. **Enable GitHub Pages** in repository settings:
-   - Source: `gh-pages` branch
-
-</Steps>
+**Or use CLI:**
+```bash
+npm i -g vercel
+vercel
+```
 
 ---
 
@@ -244,101 +165,13 @@ DATABASE_URL=postgres://...
 
 ---
 
-## SEO Optimization
+## License Note
 
-### Sitemap
+:::note[Commercial Use]
+The **free version** is for personal projects only. For client work or commercial projects, a commercial license is required.
 
-Install Astro sitemap integration:
-
-```bash
-npx astro add sitemap
-```
-
-Update `astro.config.mjs`:
-
-```javascript title="astro.config.mjs" ins={1,5}
-import sitemap from '@astrojs/sitemap';
-
-export default defineConfig({
-  site: 'https://yourdomain.com',
-  integrations: [sitemap()],
-});
-```
-
-This generates `sitemap.xml` automatically during build.
-
-### Robots.txt
-
-Create `public/robots.txt`:
-
-```txt title="public/robots.txt"
-User-agent: *
-Allow: /
-
-Sitemap: https://yourdomain.com/sitemap.xml
-```
-
-### Meta Tags
-
-The `BaseLayout.astro` includes essential meta tags:
-
-- ✅ Title and description
-- ✅ Open Graph tags
-- ✅ Language attribute
-- ✅ Viewport meta tag
-
-**Customize per page:**
-```astro
-<BaseLayout 
-  title="Custom Page Title | Your Brand"
-  description="Specific page description for SEO"
->
-  <!-- Content -->
-</BaseLayout>
-```
-
----
-
-## Performance Optimization
-
-### Image Optimization
-
-Use Astro's built-in `<Image>` component:
-
-```astro
----
-import { Image } from 'astro:assets';
-import hero from '@/assets/hero.jpg';
----
-
-<Image 
-  src={hero} 
-  alt="Hero image" 
-  width={1200} 
-  height={600}
-  loading="lazy"
-/>
-```
-
-Benefits:
-- Automatic format conversion (WebP, AVIF)
-- Responsive image generation
-- Lazy loading
-- Size optimization
-
-### Lighthouse Score Tips
-
-1. **Optimize images** - Use WebP/AVIF formats
-2. **Minimize fonts** - Load only needed weights
-3. **Enable compression** - Gzip/Brotli on server
-4. **Use CDN** - Serve assets from edge locations
-5. **Lazy load** - Defer non-critical resources
-
-**Target scores:**
-- Performance: 90+
-- Accessibility: 100
-- Best Practices: 100
-- SEO: 100
+[View License Comparison →](https://astroswiss.com#pricing)
+:::
 
 ---
 
@@ -364,37 +197,7 @@ Benefits:
   </TabItem>
 </Tabs>
 
----
 
-## Troubleshooting
-
-### Build Fails
-
-**Check Node version:**
-```bash
-node --version  # Should be 18.x or higher
-```
-
-**Clear cache and rebuild:**
-```bash
-rm -rf node_modules dist .astro
-npm install
-npm run build
-```
-
-### 404 Errors on Deployment
-
-Ensure your hosting is configured for SPA-style routing:
-- Vercel/Netlify: Auto-configured
-- Others: Configure server to serve `index.html` for all routes
-
-### Slow Build Times
-
-- Optimize images before adding to project
-- Use `.astro` components instead of framework components
-- Limit the number of pages generated
-
----
 
 ## Next Steps
 

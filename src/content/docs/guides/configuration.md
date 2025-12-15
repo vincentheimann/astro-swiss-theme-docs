@@ -5,6 +5,8 @@ description: Configure your Astro Swiss Theme with Astro, Starwind, i18n, and Ty
 
 import { Aside, Tabs, TabItem, Code } from '@astrojs/starlight/components';
 
+**Goal:** Configure the 3 essentials - site name, base URL, and languages.
+
 Configure your Astro Swiss Theme for your specific needs. These configuration options apply to both the free starter theme and the paid version.
 
 <Aside type="tip" title="Quick Navigation">
@@ -318,27 +320,9 @@ const t = useTranslations(Astro.currentLocale);
 
 ---
 
-## TypeScript Configuration
+## TypeScript Path Aliases
 
-**File:** `tsconfig.json`
-
-Basic TypeScript configuration for Astro.
-
-```json title="tsconfig.json"
-{
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  }
-}
-```
-
-### Path Aliases
-
-The `@/*` alias maps to the `src/` directory, allowing clean imports:
+The `@/*` alias maps to the `src/` directory for cleaner imports:
 
 ```typescript
 // Instead of:
@@ -347,29 +331,6 @@ import { useTranslations } from '../../../i18n/utils';
 // Use:
 import { useTranslations } from '@/i18n/utils';
 ```
-
----
-
-## Environment Variables
-
-For sensitive data or environment-specific configuration, create a `.env` file:
-
-```bash title=".env"
-PUBLIC_SITE_URL=https://yoursite.com
-PUBLIC_GA_ID=G-XXXXXXXXXX
-```
-
-Access in Astro components:
-
-```astro
----
-const siteUrl = import.meta.env.PUBLIC_SITE_URL;
----
-```
-
-<Aside type="caution" title="Security Warning">
-  Prefix public variables with `PUBLIC_` to make them available in client-side code. Never commit `.env` files to version control.
-</Aside>
 
 ---
 

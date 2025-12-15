@@ -5,11 +5,11 @@ description: Add support for Italian, Spanish, or any language to your Astro Swi
 
 import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
 
-Add support for Italian, Spanish, or any language in just 4 steps.
+**Goal:** Add Italian support in 4 steps (~15 minutes).
 
 ![Language selector](../../../assets/docs/language-selector.webp)
 
-## Quick Start: Adding Italian
+## Complete Example: Adding Italian
 
 <Steps>
 
@@ -27,17 +27,30 @@ Add support for Italian, Spanish, or any language in just 4 steps.
    
    Add all translations to the `ui` object:
    
-   ```typescript title="src/i18n/ui.ts" ins={4-8}
+   ```typescript title="src/i18n/ui.ts"  ins={4-18}
    export const ui = {
      fr: { /* French translations */ },
      de: { /* German translations */ },
      it: {
        'nav.home': 'Home',
-       'nav.work': 'I Nostri Lavori',
-       // ... all other translation keys
+       'nav.work': 'I nostri lavori',
+       'nav.about': 'Informazioni',
+       'nav.contact': 'Contattaci',
+       'business.name': 'La tua azienda',
+       'business.tagline': 'Il tagline della tua azienda',
+       'site.title': 'Titolo del tuo sito',
+       'site.description': 'Descrizione del tuo sito per SEO',
+       'author.name': 'Tu Numero',
+       'author.email': 'tu@email.com',
+       'theme.toggle': 'Cambia argomento',
+       // ... copy all other keys from FR or DE
      },
    } as const;
    ```
+   
+   :::tip[Translation Tip]
+   Copy all keys from the `fr` or `de` section to ensure you have complete translations.
+   :::
 
 2. **Update `astro.config.mjs`**
    
@@ -72,11 +85,16 @@ Add support for Italian, Spanish, or any language in just 4 steps.
 
 4. **Test**
    
-   That's it! The system will now:
-   - ✅ Automatically detect Italian in the language selector
-   - ✅ Redirect Italian-speaking browsers to `/it/`
-   - ✅ Set HTML `lang="it"`
-   - ✅ Translate all content and meta tags
+   Start your dev server and visit:
+   ```
+   http://localhost:4321/it/
+   ```
+   
+   ✅ **Success indicators:**
+   - Italian appears in the language selector
+   - Italian-speaking browsers auto-redirect to `/it/`
+   - HTML has `lang="it"` attribute
+   - All content displays in Italian
 
 </Steps>
 

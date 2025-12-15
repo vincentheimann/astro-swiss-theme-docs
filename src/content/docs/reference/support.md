@@ -132,7 +132,7 @@ A: This depends on your hosting provider. See [Deployment Guide](/deployment/) f
 
 **Q: Does the contact form actually send emails?**
 
-A: The form is a frontend template. You need to connect it to a backend service like Formspree, Netlify Forms, or your own API.
+A: This form is a frontend-only template. It formats the email content using the `href="mailto:"` attribute but does not send emails itself. To actually submit and process form data, you must connect it to a backend service such as Formspree, Netlify Forms, or your own API.
 
 **Q: How do I add Google Analytics?**
 
@@ -196,3 +196,11 @@ Please email us at: [hello@astroswiss.com](mailto:hello@astroswiss.com)
 <Aside type="tip">
   **Need more help?** Don't hesitate to reach out at [hello@astroswiss.com](mailto:hello@astroswiss.com). We're here to help!
 </Aside>
+
+---
+
+:::note[Paid Version Support]
+The paid version includes priority email support.
+
+[Learn more about the paid version →](https://astroswiss.com)
+:::

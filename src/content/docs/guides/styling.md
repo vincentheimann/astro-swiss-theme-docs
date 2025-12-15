@@ -5,6 +5,8 @@ description: Learn about the Astro Swiss Theme styling system with design tokens
 
 import { Aside, Tabs, TabItem, Card, CardGrid, Code } from '@astrojs/starlight/components';
 
+**Goal:** Customize colors, fonts, and design tokens.
+
 Learn about the powerful styling system in Astro Swiss Theme.
 
 ## Styling Architecture
@@ -380,16 +382,16 @@ Ensure WCAG AA compliance (4.5:1 for normal text):
 ## Next Steps
 
 <CardGrid>
-  <Card title="Customize Components" icon="puzzle">
-    Learn how to customize components and layouts.
-    
-  [Customization Guide →](/guides/customization/)
-  </Card>
-  
   <Card title="Configuration" icon="setting">
     Configure your site settings.
     
   [Configuration Guide →](/guides/configuration/)
+  </Card>
+  
+  <Card title="Add Languages" icon="translate">
+    Add multilingual support.
+    
+  [Adding Languages →](/guides/adding-languages/)
   </Card>
   
   <Card title="Deploy" icon="rocket">

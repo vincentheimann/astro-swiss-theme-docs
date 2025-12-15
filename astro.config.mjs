@@ -20,36 +20,16 @@ export default defineConfig({
 				'./src/styles/custom.css',
 			],
 			sidebar: [
-				{
-					label: 'Getting Started',
-					items: [
-						{ label: 'Quick Start', slug: 'getting-started', badge: { text: '10 min', variant: 'tip' } },
-					],
-				},
-				{
-					label: 'Guides',
-					items: [
-						{ label: 'Configuration', slug: 'guides/configuration' },
-						{ label: 'Customization', slug: 'guides/customization' },
-						{ label: 'Data Management', slug: 'guides/data-management' },
-						{ label: 'Styling', slug: 'guides/styling' },
-						{ label: 'Adding Languages', slug: 'guides/adding-languages' },
-					],
-				},
-				{
-					label: 'Deployment',
-					items: [
-						{ label: 'Deploy to Production', slug: 'deployment' },
-					],
-				},
-				{
-					label: 'Reference',
-					items: [
-						{ label: 'Browser Support', slug: 'reference/browser-support' },
-						{ label: 'Contributing', slug: 'reference/contributing' },
-						{ label: 'Support & FAQ', slug: 'reference/support' },
-					],
-				},
+				{ label: 'Getting Started', slug: 'getting-started', badge: { text: '10 min', variant: 'tip' } },
+				{ label: 'Configuration', slug: 'guides/configuration' },
+				{ label: 'Customization', slug: 'guides/customization' },
+				{ label: 'Data Management', slug: 'guides/data-management' },
+				{ label: 'Adding Languages', slug: 'guides/adding-languages' },
+				{ label: 'Styling', slug: 'guides/styling' },
+				{ label: 'Deployment', slug: 'deployment' },
+				{ label: 'Browser Support', slug: 'reference/browser-support' },
+				{ label: 'Contributing', slug: 'reference/contributing' },
+				{ label: 'Support & FAQ', slug: 'reference/support' },
 			],
 		}),
 	],

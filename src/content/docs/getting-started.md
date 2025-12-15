@@ -5,6 +5,14 @@ description: Get your Astro Swiss Theme site running and customized in about 10 
 
 import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
+**Goal:** Get your multilingual site running locally in 10 minutes.
+
+:::note[Prerequisites]
+- **Node.js 18+** installed on your system
+- **Basic Astro knowledge** - [Learn Astro fundamentals](https://docs.astro.build)
+- For paid version: License key from your purchase email
+:::
+
 Welcome! Let's get your site running and customized in about 10 minutes.
 
 <Aside type="note" title="About This Documentation">
@@ -37,7 +45,7 @@ Welcome! Let's get your site running and customized in about 10 minutes.
 
 </Steps>
 
-Open [http://localhost:4321](http://localhost:4321) in your browser. You should see:
+✅ **Success!** Open [http://localhost:4321](http://localhost:4321) in your browser. You should see:
 
 ![Homepage in light mode](../../assets/docs/homepage-light.png)
 
