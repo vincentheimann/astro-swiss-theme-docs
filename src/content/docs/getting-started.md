@@ -10,7 +10,6 @@ import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
 :::note[Prerequisites]
 - **Node.js 18+** installed on your system
 - **Basic Astro knowledge** - [Learn Astro fundamentals](https://docs.astro.build)
-- For paid version: License key from your purchase email
 :::
 
 Welcome! Let's get your site running and customized in about 10 minutes.
