@@ -27,6 +27,7 @@ export default defineConfig({
 				{ label: 'Adding Languages', slug: 'guides/adding-languages' },
 				{ label: 'Styling', slug: 'guides/styling' },
 				{ label: 'Deployment', slug: 'deployment' },
+				{ label: 'Analytics & Tracking', slug: 'guides/analytics' },
 				// { label: 'Contributing', slug: 'reference/contributing' },
 				{ label: 'Support & FAQ', slug: 'reference/support' },
 			],

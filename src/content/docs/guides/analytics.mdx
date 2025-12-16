@@ -1,0 +1,86 @@
+---
+title: Analytics & Tracking
+description: Learn how to configure and use the built-in GA4 and GTM support in the Astro Swiss Theme.
+---
+
+This theme comes with built-in support for Google Analytics 4 (GA4) via Google Tag Manager (GTM), optimized for performance and privacy.
+
+## Features
+
+- **Zero Layout Shift**: GTM is loaded via [Partytown](https://partytown.builder.io/) to run off the main thread.
+- **Privacy First**: Google Consent Mode v2 is implemented by default (defaults to "denied").
+- **Structured Tracking**: A clearer data attribute convention for robust event tracking.
+
+## Configuration
+
+### 1. Set your GTM ID
+Add your Google Tag Manager Container ID to your `.env` file:
+
+```bash
+PUBLIC_GTM_ID=GTM-XXXXXXX
+```
+
+### 2. Verify Loading
+When the `PUBLIC_GTM_ID` is present, the GTM script is automatically injected into the `<head>` of your `BaseLayout.astro`.
+
+## Tracking Strategy
+
+We use a declarative approach to tracking using `data-gtm-*` attributes. This decouples your tracking logic from your CSS classes, allowing you to style freely without breaking analytics.
+
+### Attributes
+
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `data-gtm-id` | A unique identifier for the specific element. | `header-contact-btn` |
+| `data-gtm-section` | The functional area of the page. | `header`, `footer`, `hero` |
+| `data-gtm-type` | The type of interaction element. | `link`, `button`, `form` |
+
+### Examples
+
+#### Tracking a Link
+```html
+<a
+  href="/contact"
+  class="btn-primary"
+  data-gtm-id="hero-cta-contact"
+  data-gtm-section="hero"
+  data-gtm-type="button"
+>
+  Contact Us
+</a>
+```
+
+#### Tracking a Form
+```html
+<form
+  action="/search"
+  data-gtm-id="header-search-form"
+  data-gtm-section="header"
+  data-gtm-type="form"
+>
+  <!-- form content -->
+</form>
+```
+
+### GTM Configuration
+In Google Tag Manager, you can create a generic **Click - All Elements** trigger that fires on all clicks where `Click Element` matches the CSS selector `[data-gtm-id]`.
+
+You can then create Variables to capture these data attributes:
+- **Variable Type**: Auto-Event Variable
+- **Variable Names**: `data-gtm-id`, `data-gtm-section`, `data-gtm-type`
+
+This allows you to set up a single scalable GA4 Event tag that automatically captures the `id` and `section` of every interaction.
+
+## Privacy & Consent
+The theme creates a `dataLayer` array and sets default consent states to `denied`.
+
+```javascript
+gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+});
+```
+
+You should perform your own integration with a Consent Management Platform (CMP) like CookieYes, Cookiebot or OneTrust to update these consent states based on user choice.
