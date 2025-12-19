@@ -1,0 +1,26 @@
+---
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/Head.astro";
+
+const { isFallback, lang, ...props } = Astro.props;
+
+// Construct absolute URL for the social image
+// User specific image: public/astroswiss-docs-preview-min.png
+const imagePath = "/astroswiss-docs-preview-min.png";
+const socialImage = Astro.site
+    ? new URL(imagePath, Astro.site)
+    : new URL(imagePath, Astro.url);
+---
+
+<!-- Render Starlight's default Head content first -->
+<Default {...Astro.props} />
+
+<!-- Open Graph Image (Missing in default Starlight) -->
+<meta property="og:image" content={socialImage} />
+<meta property="og:image:secure_url" content={socialImage} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter Image -->
+<meta name="twitter:image" content={socialImage} />

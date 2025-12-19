@@ -31,6 +31,9 @@ export default defineConfig({
 				// { label: 'Contributing', slug: 'reference/contributing' },
 				{ label: 'Support & FAQ', slug: 'reference/support' },
 			],
+			components: {
+				Head: './src/components/Head.astro',
+			},
 		}),
 	],
 });
