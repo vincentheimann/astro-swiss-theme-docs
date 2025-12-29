@@ -24,6 +24,7 @@ export default defineConfig({
 				{ label: 'Configuration', slug: 'guides/configuration' },
 				{ label: 'Customization', slug: 'guides/customization' },
 				{ label: 'Data Management', slug: 'guides/data-management' },
+				{ label: 'Website Migration', slug: 'guides/migration', badge: { text: '4-6h', variant: 'note' } },
 				{ label: 'Adding Languages', slug: 'guides/adding-languages' },
 				{ label: 'Styling', slug: 'guides/styling' },
 				{ label: 'Deployment', slug: 'deployment' },

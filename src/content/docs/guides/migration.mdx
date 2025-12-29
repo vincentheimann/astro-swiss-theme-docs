@@ -1,0 +1,955 @@
+---
+title: Website Migration Guide
+description: Migrate your existing website to Astro Swiss Theme in 7 steps with this comprehensive guide.
+---
+
+import { Aside, Steps, Card, CardGrid, Tabs, TabItem } from '@astrojs/starlight/components';
+
+**Goal:** Migrate your existing website to Astro Swiss Theme with minimal friction.
+
+This guide walks you through migrating an existing website to the Astro Swiss Theme. Whether you're coming from WordPress, a static site, or another framework, these steps will help you transition smoothly.
+
+:::note[Prerequisites]
+- **Node.js 18+** installed ([Download](https://nodejs.org/))
+- **Access to your current website** content
+- **Company assets** (logo, images, brand colors)
+- **Basic terminal knowledge** - [Learn the basics](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
+:::
+
+**Time estimate:** 4-6 hours for a complete migration
+
+---
+
+## Migration Overview
+
+<CardGrid>
+  <Card title="Content Audit" icon="document">
+    Extract and inventory all content from your existing site.
+  </Card>
+  <Card title="Setup & Configuration" icon="setting">
+    Install the template and configure company information.
+  </Card>
+  <Card title="Content Migration" icon="puzzle">
+    Map your data to the template structure.
+  </Card>
+  <Card title="Deploy" icon="rocket">
+    Test thoroughly and deploy to production.
+  </Card>
+</CardGrid>
+
+---
+
+## Step 1: Content Audit & Extraction
+
+Before touching any code, inventory all content from your existing website.
+
+### 1.1 Create a Content Inventory
+
+Create a spreadsheet or document with these sections:
+
+<Tabs>
+  <TabItem label="Company Information">
+    **Essential details:**
+    - Company name
+    - Address (street, PO box, city, postal code)
+    - Phone number(s)
+    - Email address(es)
+    - Social media links (LinkedIn, Facebook, Instagram, Twitter, GitHub)
+    - Google Maps URL
+
+    **Example structure:**
+    ```
+    Company Name: Your Company Name
+    Address: Street Address 123
+    City: CH-1000 Your City
+    Phone: +41 XX XXX XX XX
+    Email: contact@example.com
+    LinkedIn: https://www.linkedin.com/company/yourcompany/
+    Instagram: https://www.instagram.com/yourcompany/
+    ```
+  </TabItem>
+
+  <TabItem label="Services/Products">
+    **For each service:**
+    - Title
+    - Description (2-3 sentences)
+    - Icon name or image
+
+    **Example:**
+    ```
+    Service 1: Custom Development
+    Description: Tailored software solutions for your business needs
+    Icon: code
+
+    Service 2: Consulting
+    Description: Expert guidance for your digital transformation
+    Icon: users
+    ```
+  </TabItem>
+
+  <TabItem label="Team Members">
+    **For each person:**
+    - Name
+    - Role/title
+    - Bio (2-3 sentences)
+    - Photo (square format preferred)
+    - Email
+    - Phone
+    - Social links
+
+    <Aside type="tip">
+      If you don't have professional photos, the template will automatically generate avatars from names.
+    </Aside>
+  </TabItem>
+
+  <TabItem label="Portfolio/Projects">
+    **For each project:**
+    - Title
+    - Description
+    - Images (800x600px recommended)
+    - Links (if applicable)
+    - Date completed
+  </TabItem>
+</Tabs>
+
+### 1.2 Extract Visual Assets
+
+Collect all assets you'll need:
+
+- ✅ **Logo** (SVG format preferred, or high-res PNG)
+- ✅ **Team photos** (square format, 240x240px minimum)
+- ✅ **Portfolio images** (800x600px recommended)
+- ✅ **Favicon** (if you have a custom one)
+- ✅ **Brand colors** (hex codes)
+
+**Organize your assets:**
+
+```
+migration-assets/
+├── logo/
+│   └── company-logo.svg
+├── team/
+│   ├── person1.jpg
+│   └── person2.jpg
+├── portfolio/
+│   ├── project1.jpg
+│   └── project2.jpg
+└── brand-colors.txt
+```
+
+<Aside type="tip" title="Image Optimization">
+  Optimize images before adding them using tools like [TinyPNG](https://tinypng.com/) or [Squoosh](https://squoosh.app/).
+</Aside>
+
+---
+
+## Step 2: Initial Setup
+
+### 2.1 Install the Template
+
+<Tabs>
+  <TabItem label="Free Theme (GitHub)">
+    <Steps>
+
+    1. **Clone the repository**
+
+       ```bash
+       # Free starter theme (public repository)
+       git clone https://github.com/vincentheimann/astro-swiss-free-starter-theme.git
+       cd astro-swiss-free-starter-theme
+       ```
+
+    2. **Install dependencies**
+
+       ```bash
+       npm install
+       ```
+
+    3. **Start development server**
+
+       ```bash
+       npm run dev
+       ```
+
+       Visit `http://localhost:4321` to see the template.
+
+    </Steps>
+  </TabItem>
+
+  <TabItem label="Paid Theme (ZIP)">
+    <Steps>
+
+    1. **Extract the ZIP file**
+
+       Extract the purchased `astro-swiss-starter-theme-v1.0.0.zip` to your desired location:
+
+       ```bash
+       # Example: Extract to your projects folder
+       unzip astro-swiss-starter-theme-v1.0.0.zip
+       cd astro-swiss-starter-theme
+       ```
+
+    2. **Install dependencies**
+
+       ```bash
+       npm install
+       ```
+
+    3. **Start development server**
+
+       ```bash
+       npm run dev
+       ```
+
+       Visit `http://localhost:4321` to see the template.
+
+    </Steps>
+
+    <Aside type="tip">
+      The paid theme includes all features and premium components. Check the included README for additional setup instructions.
+    </Aside>
+  </TabItem>
+</Tabs>
+
+
+<Aside type="tip">
+  Keep the dev server running in a separate terminal window. Changes you make will automatically reload in the browser.
+</Aside>
+
+### 2.2 Create a Git Repository (Recommended)
+
+Track your changes with version control:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit - Astro Swiss template"
+```
+
+---
+
+## Step 3: Configure Company Information
+
+Now replace the demo content with your actual company information.
+
+### 3.1 Update Company Constants
+
+**File:** `src/consts.ts`
+
+Replace the `COMPANY` object with your information:
+
+```typescript title="src/consts.ts"
+export const COMPANY: CompanyInfo = {
+    name: "Your Company Name",
+    address: "Your Street Address",
+    pobox: "", // Leave empty if not used
+    city: "CH-1000 Your City",
+    phone: "+41 XX XXX XX XX",
+    email: "contact@example.com",
+    mapsUrl: "https://maps.google.com/?q=Your+Address",
+    socials: {
+        linkedin: "https://www.linkedin.com/company/yourcompany/",
+        facebook: "",
+        instagram: "",
+        twitter: "",
+        github: "",
+    },
+};
+```
+
+<Aside type="note">
+  Leave social media fields as empty strings (`""`) if you don't use that platform.
+</Aside>
+
+### 3.2 Update Site Metadata & Translations
+
+**File:** `src/i18n/ui.ts`
+
+Update the site title, description, and business information for each language:
+
+<Tabs>
+  <TabItem label="French">
+    ```typescript title="src/i18n/ui.ts"
+    fr: {
+        'site.title': 'Your Company | Your Tagline',
+        'site.description': 'Your SEO-optimized description here',
+        'business.tagline': 'Your compelling tagline',
+        'business.description': 'Brief description of your business and what you do',
+        // ... keep other translations
+    }
+    ```
+  </TabItem>
+
+  <TabItem label="German">
+    ```typescript title="src/i18n/ui.ts"
+    de: {
+        'site.title': 'Ihr Unternehmen | Ihr Slogan',
+        'site.description': 'Ihre SEO-optimierte Beschreibung hier',
+        'business.tagline': 'Ihr überzeugender Slogan',
+        'business.description': 'Kurze Beschreibung Ihres Unternehmens',
+        // ... keep other translations
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+### 3.3 Configure Default Language
+
+If your primary language is different from French, update:
+
+**File:** `astro.config.mjs`
+
+```javascript title="astro.config.mjs"
+i18n: {
+    defaultLocale: "fr", // Change to "de", "en", etc. if needed
+    locales: ["fr", "de"], // List all languages you support
+    routing: {
+        prefixDefaultLocale: false,
+    },
+},
+```
+
+**File:** `src/i18n/ui.ts`
+
+```typescript title="src/i18n/ui.ts"
+export const defaultLang: Language = 'fr'; // Match astro.config.mjs
+```
+
+<Aside>
+  See the [Adding Languages Guide](/guides/adding-languages/) for detailed language configuration.
+</Aside>
+
+---
+
+## Step 4: Add Your Services
+
+The template includes a Services section. Let's customize it with your offerings.
+
+### 4.1 Update Service Translations
+
+**File:** `src/i18n/ui.ts`
+
+Update the services section for each language:
+
+```typescript title="src/i18n/ui.ts" {4-11}
+fr: {
+    // ... other translations ...
+    'services.title': 'Our Services',
+    'services.subtitle': 'Comprehensive solutions for your needs',
+    
+    'services.service1.title': 'Your Service 1',
+    'services.service1.description': 'Description of your first service',
+    
+    'services.service2.title': 'Your Service 2',
+    'services.service2.description': 'Description of your second service',
+    
+    // Add more services as needed
+}
+```
+
+Repeat for German and any other languages.
+
+### 4.2 Customize Service Icons (Optional)
+
+**File:** `src/components/ServicesSection.astro`
+
+The template uses [Tabler Icons](https://tabler.io/icons). Change icons to match your services:
+
+```astro title="src/components/ServicesSection.astro"
+const services = [
+    { icon: 'code', key: 'service1' },        // Development
+    { icon: 'users', key: 'service2' },       // Consulting
+    { icon: 'palette', key: 'service3' },     // Design
+    { icon: 'rocket', key: 'service4' },      // Launch
+    // ... etc
+];
+```
+
+Browse available icons at [Tabler Icons](https://tabler.io/icons).
+
+---
+
+## Step 5: Add Team Members (Optional)
+
+If you have team members to showcase, add them to the template.
+
+### 5.1 Add Employee Data
+
+**File:** `src/consts.ts`
+
+Add employees to the `EMPLOYEES` object:
+
+```typescript title="src/consts.ts"
+export const EMPLOYEES: Record<string, EmployeeInfo> = {
+    ABC: {
+        id: "ABC",
+        name: "Alice Brown",
+        portrait: "/images/team/alice.jpg", // Add photo to public/images/team/
+        email: "alice@example.com",
+        phone: "+41 XX XXX XX XX",
+        socials: {
+            linkedin: "https://www.linkedin.com/in/alicebrown/",
+            facebook: "",
+            instagram: "",
+            twitter: "",
+            github: "",
+        },
+    },
+    // Add more team members as needed
+};
+```
+
+<Aside type="tip">
+  Use 3-letter trigrams (like initials) for employee IDs.
+</Aside>
+
+### 5.2 Add Employee Translations
+
+**File:** `src/i18n/ui.ts`
+
+Add title and bio for each employee:
+
+```typescript title="src/i18n/ui.ts"
+fr: {
+    // ... other translations ...
+    'employee.ABC.title': 'Founder & CEO',
+    'employee.ABC.bio': 'Brief bio describing experience and expertise.',
+}
+```
+
+### 5.3 Add Team Photos
+
+1. Place team photos in `public/images/team/`
+2. Recommended size: 240x240px (square)
+3. Optimize images before adding
+
+<Aside type="tip">
+  If you don't have photos, leave the `portrait` field empty. The template will automatically generate an avatar using the person's name.
+</Aside>
+
+---
+
+## Step 6: Add Portfolio Projects
+
+Showcase your work with portfolio projects.
+
+### 6.1 Prepare Project Images
+
+1. Create folder: `src/assets/portfolio/`
+2. Add your project images (800x600px recommended)
+3. Optimize images before adding
+
+### 6.2 Add Projects
+
+**File:** `src/data/portfolio/fr.ts`
+
+```typescript title="src/data/portfolio/fr.ts"
+import { nanoid } from "nanoid";
+import type { ImageMetadata } from "astro";
+
+// Import your project images
+import project1 from "../../assets/portfolio/project1.jpg";
+import project2 from "../../assets/portfolio/project2.jpg";
+
+export const portfolioFr: PortfolioProject[] = [
+    {
+        id: nanoid(),
+        title: "Project Title",
+        description: "Detailed project description.\n\nMultiple paragraphs supported.",
+        image: project1,
+        primaryCtaText: "View Details →",
+        primaryCtaLink: "#", // Add link if you have a project page
+    },
+    {
+        id: nanoid(),
+        title: "Another Project",
+        description: "Another project description.",
+        image: project2,
+    },
+    // Add more projects...
+];
+```
+
+Repeat for German (`src/data/portfolio/de.ts`) with translated content.
+
+<Aside type="tip">
+  You can use external URLs for images instead of importing local files:
+  ```typescript
+  image: "https://example.com/project-image.jpg"
+  ```
+</Aside>
+
+---
+
+## Step 7: Customize Branding & Styling
+
+Make the template match your brand identity.
+
+### 7.1 Update Brand Colors
+
+**File:** `src/styles/tokens.css`
+
+Find the color definitions and update them:
+
+```css title="src/styles/tokens.css"
+@theme {
+    /* Primary Brand Color */
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-500: #0ea5e9;  /* Main brand color */
+    --color-primary-600: #0284c7;
+    --color-primary-700: #0369a1;
+    
+    /* Adjust other shades as needed */
+}
+```
+
+<Aside type="tip">
+  Use a tool like [UIColors](https://uicolors.app/) to generate a complete color palette from your brand color.
+</Aside>
+
+### 7.2 Add Your Logo
+
+<Steps>
+
+1. **Prepare your logo:**
+   - SVG format preferred (scalable, small file size)
+   - Or PNG with transparent background (high resolution)
+
+2. **Add logo file:**
+   - Place in `public/images/`
+   - Example: `public/images/logo.svg`
+
+3. **Update logo references:**
+
+   **File:** `src/components/Header.astro`
+
+   ```astro title="src/components/Header.astro"
+   <img 
+       src="/images/logo.svg" 
+       alt="Your Company Name"
+       class="h-8 w-auto"
+   />
+   ```
+
+   Update footer logo in `src/components/Footer.astro` if present.
+
+</Steps>
+
+### 7.3 Update Favicon
+
+Replace `public/favicon.svg` with your own favicon:
+- SVG format recommended
+- Or use PNG (32x32px minimum)
+
+---
+
+## Language Configuration
+
+### Supporting Multiple Languages
+
+The template supports French and German by default. Configure languages based on your needs:
+
+<Tabs>
+  <TabItem label="Keep Both Languages">
+    If you want to support both French and German:
+    
+    1. ✅ Ensure all translations are complete in `src/i18n/ui.ts`
+    2. ✅ Add content to both `src/data/portfolio/fr.ts` and `de.ts`
+    3. ✅ Test both language versions
+  </TabItem>
+
+  <TabItem label="Remove a Language">
+    If you only need French (for example):
+
+    **1. Update Astro config** (`astro.config.mjs`):
+    ```javascript
+    i18n: {
+        defaultLocale: "fr",
+        locales: ["fr"], // Remove "de"
+    }
+    ```
+
+    **2. Update language definitions** (`src/i18n/ui.ts`):
+    ```typescript
+    export const languages = {
+        fr: { name: 'Français', flag: '🇫🇷' },
+        // Remove de: { ... }
+    } as const;
+    ```
+
+    **3. Remove German translations:** Delete the `de: { ... }` section from `ui.ts`
+
+    **4. Remove German portfolio:** Delete `src/data/portfolio/de.ts`
+
+    **5. Remove German pages:** Delete `src/pages/de/` folder
+  </TabItem>
+
+  <TabItem label="Add a New Language">
+    See the [Adding Languages Guide](/guides/adding-languages/) for detailed instructions on adding support for additional languages.
+  </TabItem>
+</Tabs>
+
+---
+
+## Contact Form Configuration
+
+The template includes a contact form. Configure it to receive submissions.
+
+### Option 1: Email Link (Simplest)
+
+The default setup uses a `mailto:` link. Update the email in:
+
+**File:** `src/components/ContactSection.astro`
+
+```astro title="src/components/ContactSection.astro"
+<form action={`mailto:${COMPANY.email}`} method="post" enctype="text/plain">
+```
+
+This opens the user's email client. No server setup required.
+
+### Option 2: Form Service Integration
+
+For a better user experience, integrate with a form service:
+
+**Popular options:**
+- [Formspree](https://formspree.io/) - Free tier available
+- [Netlify Forms](https://www.netlify.com/products/forms/) - If deploying to Netlify
+- [Web3Forms](https://web3forms.com/) - Free, no registration
+
+**Example with Formspree:**
+
+<Steps>
+
+1. Sign up at [formspree.io](https://formspree.io/)
+2. Create a new form and get your form endpoint
+3. Update the form action:
+
+   ```astro title="src/components/ContactSection.astro"
+   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+   ```
+
+</Steps>
+
+---
+
+## Testing Your Migration
+
+Before deploying, thoroughly test your migrated site.
+
+### Content Checklist
+
+Go through each section and verify:
+
+<Steps>
+
+1. **Header/Navigation**
+   - ✅ Logo displays correctly
+   - ✅ Navigation links work
+   - ✅ Language switcher works (if multilingual)
+   - ✅ Dark mode toggle works
+
+2. **Hero Section**
+   - ✅ Company name and tagline are correct
+   - ✅ CTA button links to the right place
+
+3. **Services Section**
+   - ✅ All services display correctly
+   - ✅ Icons are appropriate
+   - ✅ Descriptions are accurate
+
+4. **Portfolio Section**
+   - ✅ Projects display in carousel
+   - ✅ Images load correctly
+   - ✅ Lightbox works when clicking images
+   - ✅ CTAs link to correct destinations
+
+5. **Team Section** (if applicable)
+   - ✅ Team members display correctly
+   - ✅ Photos load or avatars generate
+   - ✅ Social links work
+
+6. **Contact Section**
+   - ✅ Form fields are labeled correctly
+   - ✅ Company information is accurate
+   - ✅ Map link works
+   - ✅ Social media links work
+
+7. **Footer**
+   - ✅ Copyright information is correct
+   - ✅ Links work
+
+</Steps>
+
+### Multilingual Testing
+
+If supporting multiple languages:
+
+- ✅ Switch between languages and verify all content
+- ✅ Check that URLs are correct (`/` for default, `/de/` for German)
+- ✅ Verify language preference persists on page reload
+- ✅ Test all sections in each language
+
+### Responsive Testing
+
+Test on different screen sizes:
+
+- ✅ **Desktop** (1920px, 1440px, 1024px)
+- ✅ **Tablet** (768px)
+- ✅ **Mobile** (375px, 414px)
+
+Use browser DevTools to test responsive breakpoints.
+
+### Performance Testing
+
+Run a Lighthouse audit:
+
+<Steps>
+
+1. Open Chrome DevTools (F12)
+2. Go to "Lighthouse" tab
+3. Run audit for "Performance", "Accessibility", "Best Practices", "SEO"
+4. Aim for scores 90+ in all categories
+
+</Steps>
+
+**Common issues:**
+- Large images → Optimize with [TinyPNG](https://tinypng.com/)
+- Missing alt text → Add to all images
+- Slow loading → Check image sizes and formats
+
+---
+
+## Deployment
+
+Once testing is complete, deploy your site to production.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+This creates an optimized production build in the `dist/` folder.
+
+### Preview Production Build
+
+Test the production build locally:
+
+```bash
+npm run preview
+```
+
+### Deployment Options
+
+The template works with any static hosting provider. Popular options:
+
+<CardGrid>
+  <Card title="Netlify (Recommended)" icon="seti:netlify">
+    1. Push your code to GitHub
+    2. Sign up at [netlify.com](https://www.netlify.com/)
+    3. Click "Add new site" → "Import from Git"
+    4. Select your repository
+    5. Build settings:
+       - **Build command:** `npm run build`
+       - **Publish directory:** `dist`
+    6. Click "Deploy"
+
+    **Custom domain:** Follow Netlify's guide to add your domain.
+  </Card>
+
+  <Card title="Vercel" icon="seti:vercel">
+    1. Push your code to GitHub
+    2. Sign up at [vercel.com](https://vercel.com/)
+    3. Click "New Project"
+    4. Import your repository
+    5. Vercel auto-detects Astro settings
+    6. Click "Deploy"
+  </Card>
+
+  <Card title="Other Hosts" icon="rocket">
+    The template works with:
+    - Cloudflare Pages
+    - AWS Amplify
+    - Azure Static Web Apps
+    - Any host supporting static sites
+
+    See the [Deployment Guide](/deployment/) for provider-specific instructions.
+  </Card>
+</CardGrid>
+
+---
+
+## Post-Deployment
+
+### Set Up Analytics (Optional)
+
+Track your website traffic with Google Analytics:
+
+1. Create a Google Analytics 4 property
+2. Get your Measurement ID (format: `G-XXXXXXXXXX`)
+3. Set up Google Tag Manager
+
+See the [Analytics Guide](/guides/analytics/) for detailed setup instructions.
+
+### Set Up SEO
+
+Improve your search engine visibility:
+
+<Steps>
+
+1. **Submit sitemap to Google Search Console:**
+   - Your sitemap is at: `https://yourdomain.com/sitemap-index.xml`
+   - Add it in [Google Search Console](https://search.google.com/search-console/)
+
+2. **Verify Open Graph tags:**
+   - Test with [OpenGraph.xyz](https://www.opengraph.xyz/)
+   - Ensure preview image displays correctly
+
+3. **Test structured data:**
+   - Use [Google's Rich Results Test](https://search.google.com/test/rich-results)
+
+</Steps>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+<Tabs>
+  <TabItem label="Module Errors">
+    **Issue:** "Module not found" errors
+
+    **Solution:**
+    ```bash
+    # Delete node_modules and reinstall
+    rm -rf node_modules package-lock.json
+    npm install
+    ```
+  </TabItem>
+
+  <TabItem label="Images Not Displaying">
+    **Possible causes:**
+    - ✅ Check image path is correct
+    - ✅ Ensure image is in `public/` or `src/assets/`
+    - ✅ Verify image import statement (for assets)
+    - ✅ Check file extension matches actual file
+  </TabItem>
+
+  <TabItem label="Translations Not Showing">
+    **Possible causes:**
+    - ✅ Check translation key exists in `src/i18n/ui.ts`
+    - ✅ Verify language code matches (`fr`, `de`, etc.)
+    - ✅ Ensure `as const` is present in ui.ts
+    - ✅ Restart dev server after changing translations
+  </TabItem>
+
+  <TabItem label="Dark Mode Issues">
+    **Solution:**
+    - ✅ Clear browser cache
+    - ✅ Check browser console for errors
+    - ✅ Verify `src/styles/tokens.css` has dark mode colors defined
+  </TabItem>
+
+  <TabItem label="Build Fails">
+    **Common causes:**
+    - ✅ TypeScript errors → Check terminal output
+    - ✅ Missing imports → Verify all imports are correct
+    - ✅ Invalid image paths → Check all image references
+
+    **Debug:**
+    ```bash
+    # Run build with verbose output
+    npm run build -- --verbose
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## Migration Checklist
+
+Use this checklist to track your migration progress:
+
+### Pre-Migration
+- [ ] Content inventory completed
+- [ ] Visual assets collected
+- [ ] Brand colors documented
+- [ ] Template downloaded and extracted
+
+### Configuration
+- [ ] Dependencies installed (`npm install`)
+- [ ] Dev server running (`npm run dev`)
+- [ ] Company information updated (`src/consts.ts`)
+- [ ] Site metadata updated (`src/i18n/ui.ts`)
+- [ ] Default language configured
+
+### Content
+- [ ] Services added and translated
+- [ ] Team members added (if applicable)
+- [ ] Portfolio projects added
+- [ ] All translations completed
+
+### Branding
+- [ ] Brand colors updated (`src/styles/tokens.css`)
+- [ ] Logo added and referenced
+- [ ] Favicon updated
+
+### Testing
+- [ ] All sections reviewed
+- [ ] Multilingual content tested
+- [ ] Responsive design tested
+- [ ] Performance audit passed (Lighthouse 90+)
+- [ ] Contact form tested
+
+### Deployment
+- [ ] Production build successful (`npm run build`)
+- [ ] Production preview tested (`npm run preview`)
+- [ ] Site deployed to hosting provider
+- [ ] Custom domain configured
+- [ ] SSL certificate active (HTTPS)
+
+### Post-Deployment
+- [ ] Analytics set up (optional)
+- [ ] Sitemap submitted to Google Search Console
+- [ ] Open Graph tags verified
+- [ ] Final cross-browser testing
+
+---
+
+## Next Steps
+
+Congratulations on migrating to Astro Swiss! 🎉
+
+<CardGrid>
+  <Card title="Styling Guide" icon="palette">
+    Advanced styling and theming options.
+    
+    [Learn More →](/guides/styling/)
+  </Card>
+  
+  <Card title="Customization Guide" icon="pencil">
+    Component customization and advanced features.
+    
+    [Learn More →](/guides/customization/)
+  </Card>
+  
+  <Card title="Adding Languages" icon="translate">
+    Add support for more languages.
+    
+    [Learn More →](/guides/adding-languages/)
+  </Card>
+
+  <Card title="Analytics Setup" icon="seti:graph">
+    Track your visitors with GA4 and GTM.
+    
+    [Learn More →](/guides/analytics/)
+  </Card>
+</CardGrid>
+
+---
+
+<Aside type="tip" title="Need Help?">
+  Check our [Support & FAQ](/reference/support/) for assistance or reach out to the community.
+</Aside>
