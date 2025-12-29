@@ -65,6 +65,7 @@ Visit `http://localhost:4321` to see your site.
 
 ### Deployment
 - **[Deployment](docs/DEPLOYMENT.md)** - Deploy to Vercel, Netlify, Cloudflare, and more
+- **[Theme Update Guide](docs/THEME_UPDATE.md)** - Update your theme to the latest version
 - **[Browser Support](docs/BROWSER_SUPPORT.md)** - Compatibility and testing information
 
 ### Contributing

@@ -1,0 +1,643 @@
+---
+title: Theme Update Guide
+description: Keep your Astro Swiss theme up-to-date with the latest features, improvements, and security fixes.
+---
+
+import { Aside, Steps, Card, CardGrid, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::tip[First time updating?]
+Read the [Before You Update](#before-you-update) section first. If something goes wrong, see [Emergency Rollback](#emergency-rollback).
+:::
+
+**Keep your Astro Swiss theme up-to-date with the latest features, improvements, and security fixes.**
+
+---
+
+## Before You Update
+
+### 1. Check Your Current Version
+
+⏱️ **Time: 1 minute**
+
+Find your current version in `package.json`:
+
+```json
+{
+  "name": "astro-swiss-starter-theme",
+  "version": "1.0.0"  // ← Your current version
+}
+```
+
+### 2. Review the Changelog
+
+⏱️ **Time: 5-10 minutes**
+
+**Always read the changelog before updating!** It contains:
+- ✨ New features
+- 🐛 Bug fixes
+- ⚠️ Breaking changes
+- 📝 Migration instructions
+
+Visit the [Changelog](https://github.com/vincentheimann/astro-swiss-starter-theme/blob/main/CHANGELOG.md) or check your purchase email for update notifications.
+
+:::note[What's New in This Version?]
+Check the changelog for a summary of changes. This helps you decide if the update is worth the effort and what to test afterward.
+:::
+
+### 3. Document Your Customizations
+
+⏱️ **Time: 5 minutes**
+
+Create a customization checklist. Copy this template to a file called `my-customizations.md`:
+
+```markdown
+# My Customizations Checklist
+
+## Modified Files
+- [ ] src/consts.ts - Company info and employees
+- [ ] src/i18n/ui.ts - Custom translations
+- [ ] src/data/portfolio/fr.ts - Portfolio projects (French)
+- [ ] src/data/portfolio/de.ts - Portfolio projects (German)
+- [ ] src/styles/tokens.css - Brand colors
+- [ ] .env - Environment variables
+
+## Custom Files I Created
+- [ ] src/components/[ComponentName].astro
+- [ ] src/pages/[PageName].astro
+- [ ] Other: _______________
+
+## Assets
+- [ ] src/assets/ - Custom images
+- [ ] public/ - Static files
+
+## Notes
+- Customization details: _______________
+- Special configurations: _______________
+```
+
+:::tip[Save this checklist!]
+You'll reference it during the update process to ensure nothing is missed.
+:::
+
+---
+
+## Choosing an Update Method
+
+### Quick Decision Guide
+
+**Answer these questions:**
+
+1. **Have you created custom components or pages?**
+   - Yes → Use [Method 1: Safe Update](#method-1-safe-update)
+   - No → Continue to question 2
+
+2. **Have you modified theme files beyond `consts.ts`, `ui.ts`, and `tokens.css`?**
+   - Yes → Use [Method 1: Safe Update](#method-1-safe-update)
+   - No → Continue to question 3
+
+3. **Are you comfortable with Git and merge conflicts?**
+   - Yes → Use [Method 3: Git Merge](#method-3-git-merge) (fastest)
+   - No → Use [Method 2: Fresh Install](#method-2-fresh-install) (safest)
+
+### Method Comparison
+
+| Method | Best For | Difficulty | Time | Risk |
+|--------|----------|------------|------|------|
+| [Safe Update](#method-1-safe-update) | Heavy customizations, custom components | Medium | 30-60 min | Low |
+| [Fresh Install](#method-2-fresh-install) | Light customizations (mostly data changes) | Easy | 20-40 min | Very Low |
+| [Git Merge](#method-3-git-merge) | Git users comfortable with conflicts | Advanced | 15-30 min | Medium |
+
+:::tip[Still not sure?]
+When in doubt, use **Method 2: Fresh Install**. It's the safest approach and works well for most users.
+:::
+
+---
+
+## Method 1: Safe Update
+
+**Best for:** Sites with custom components, structural changes, or extensive modifications.
+
+**Total time:** ⏱️ 30-60 minutes
+
+This method manually merges new features while preserving your work.
+
+<Steps>
+
+1. **Backup Your Work (5 minutes)**
+
+   <Tabs>
+     <TabItem label="Git Backup (Recommended)">
+       ```bash
+       # Commit all changes
+       git add .
+       git commit -m "Pre-update backup - v1.0.0"
+
+       # Create backup branch
+       git branch backup-v1.0.0
+
+       # Tag current state
+       git tag pre-update-v1.0.0
+       ```
+     </TabItem>
+
+     <TabItem label="Manual Backup">
+       ```bash
+       # Windows
+       xcopy /E /I astro-swiss-starter-theme astro-swiss-backup-2025-12-29
+
+       # Mac/Linux
+       cp -r astro-swiss-starter-theme astro-swiss-backup-2025-12-29
+       ```
+     </TabItem>
+   </Tabs>
+
+2. **Download New Version (2 minutes)**
+
+   - Download the latest theme `.zip` file from your purchase email or dashboard
+   - Extract to a temporary location (e.g., `astro-swiss-v1.1.0-temp`)
+
+3. **Compare Changes (10-15 minutes)**
+
+   Use a diff tool to compare folders:
+
+   | Platform | Recommended Tools |
+   |----------|-------------------|
+   | Windows | WinMerge, Beyond Compare |
+   | Mac | FileMerge, Kaleidoscope |
+   | Cross-platform | VS Code, Meld |
+
+   **Focus on these key areas:**
+
+   | Area | What to Check |
+   |------|---------------|
+   | `package.json` | New dependencies, version updates |
+   | `src/components/` | New or updated components |
+   | `src/styles/` | New design tokens, CSS updates |
+   | `astro.config.mjs` | Configuration changes |
+   | `starwind.config.json` | Starwind UI updates |
+
+4. **Update Dependencies (3-5 minutes)**
+
+   Copy the new `package.json` dependencies section and install:
+
+   ```bash
+   npm install
+   ```
+
+   :::note[Installation taking long?]
+   This is normal for major updates. Dependencies are being downloaded and compiled.
+   :::
+
+5. **Merge New Features (10-20 minutes)**
+
+   Manually copy new features you want:
+
+   - **New components**: Copy from `src/components/` in the new version
+   - **Style updates**: Merge changes from `src/styles/`
+   - **Configuration**: Update `astro.config.mjs` if needed
+
+   :::caution[Don't overwrite your customized files!]
+   Review each change carefully and merge selectively.
+   :::
+
+6. **Test Thoroughly (10-15 minutes)**
+
+   ```bash
+   # Start dev server
+   npm run dev
+   ```
+
+   **Verify in browser (http://localhost:4321):**
+   - ✅ All pages load correctly
+   - ✅ Language switching works (French ↔ German)
+   - ✅ Dark mode toggle works
+   - ✅ Your customizations are intact
+   - ✅ New features work as expected
+   - ✅ No console errors (press F12 to check)
+
+   ```bash
+   # Build for production
+   npm run build
+
+   # Preview production build
+   npm run preview
+   ```
+
+   :::tip[Don't skip the production build test!]
+   Some issues only appear in production builds.
+   :::
+
+</Steps>
+
+---
+
+## Method 2: Fresh Install
+
+**Best for:** Sites with minimal customizations (mostly data in `consts.ts`, `i18n/`, and `data/`).
+
+**Total time:** ⏱️ 20-40 minutes
+
+This method starts fresh and re-applies your customizations.
+
+<Steps>
+
+1. **Save Your Customizations (5 minutes)**
+
+   <Tabs>
+     <TabItem label="Mac/Linux">
+       ```bash
+       # Create backup folder
+       mkdir my-customizations
+
+       # Copy your data files
+       cp src/consts.ts my-customizations/
+       cp src/i18n/ui.ts my-customizations/
+       cp -r src/data/portfolio my-customizations/
+       cp src/styles/tokens.css my-customizations/
+       cp -r src/assets my-customizations/
+       cp .env my-customizations/
+       ```
+     </TabItem>
+
+     <TabItem label="Windows (PowerShell)">
+       ```powershell
+       # Create backup folder
+       New-Item -ItemType Directory -Path my-customizations
+
+       # Copy your data files
+       Copy-Item src/consts.ts my-customizations/
+       Copy-Item src/i18n/ui.ts my-customizations/
+       Copy-Item -Recurse src/data/portfolio my-customizations/
+       Copy-Item src/styles/tokens.css my-customizations/
+       Copy-Item -Recurse src/assets my-customizations/
+       Copy-Item .env my-customizations/
+       ```
+     </TabItem>
+   </Tabs>
+
+2. **Install New Version (5 minutes)**
+
+   - **Backup your current project** (if not using Git):
+     ```bash
+     # Mac/Linux
+     cp -r ../astro-swiss-starter-theme ../astro-swiss-backup
+     
+     # Windows (PowerShell)
+     Copy-Item -Recurse ..\astro-swiss-starter-theme ..\astro-swiss-backup
+     ```
+
+   - Extract the new theme version to your project location
+
+   - Install dependencies:
+     ```bash
+     npm install
+     ```
+
+3. **Re-apply Your Customizations (10-15 minutes)**
+
+   **Company & Employee Data:**
+   - Open `my-customizations/consts.ts`
+   - Copy your `COMPANY` and `EMPLOYEES` data
+   - Paste into the new `src/consts.ts`
+
+   **Translations:**
+   - Open `my-customizations/ui.ts`
+   - Copy your custom translation keys
+   - Merge into the new `src/i18n/ui.ts`
+
+   :::caution[Don't overwrite new translation keys!]
+   Only add your custom translations, keep new keys from the update.
+   :::
+
+   **Portfolio Projects:**
+   - Copy your projects from `my-customizations/portfolio/` to `src/data/portfolio/`
+
+   **Styling:**
+   - Compare `my-customizations/tokens.css` with new `src/styles/tokens.css`
+   - Re-apply your color customizations
+   - Keep new design tokens from the update
+
+   **Assets:**
+   - Copy your images from `my-customizations/assets/` to `src/assets/`
+
+   **Environment Variables:**
+   - Copy settings from `my-customizations/.env` to new `.env`
+
+4. **Test Everything (10 minutes)**
+
+   ```bash
+   npm run dev
+   ```
+
+   **Open http://localhost:4321 and verify:**
+   - ✅ Company info displays correctly
+   - ✅ Team section shows your employees
+   - ✅ Portfolio shows your projects
+   - ✅ Colors match your brand
+   - ✅ All translations work (test both languages)
+   - ✅ Custom features still work
+   - ✅ No console errors (F12 → Console tab)
+
+   **Then test production build:**
+   ```bash
+   npm run build
+   npm run preview
+   ```
+
+</Steps>
+
+---
+
+## Method 3: Git Merge
+
+**Best for:** Developers comfortable with Git and merge conflict resolution.
+
+**Total time:** ⏱️ 15-30 minutes (depending on conflicts)
+
+:::tip[Git knowledge required]
+This method requires Git knowledge and the theme repository as a remote. If you're not comfortable resolving merge conflicts, use Method 1 or 2 instead.
+:::
+
+<Steps>
+
+1. **Add Theme Repository (2 minutes)**
+
+   ```bash
+   # Add theme repo as remote
+   git remote add theme https://github.com/vincentheimann/astro-swiss-starter-theme.git
+
+   # Fetch latest changes
+   git fetch theme
+   ```
+
+2. **Create Update Branch (1 minute)**
+
+   ```bash
+   # Create update branch
+   git checkout -b update-to-v1.1.0
+
+   # Merge new version
+   git merge theme/main
+   ```
+
+   :::note[No conflicts?]
+   Great! Skip to Step 4. If you see conflicts, continue to Step 3.
+   :::
+
+3. **Resolve Conflicts (10-20 minutes)**
+
+   Git will show conflicts in customized files:
+
+   ```bash
+   # View conflicts
+   git status
+
+   # For each conflicting file:
+   # 1. Open in your editor
+   # 2. Look for conflict markers: <<<<<<<, =======, >>>>>>>
+   # 3. Keep your customizations + new features
+   # 4. Remove conflict markers
+   # 5. Save the file
+
+   # Mark as resolved
+   git add <file>
+   ```
+
+   **Common conflict files:**
+
+   | File | How to Resolve |
+   |------|----------------|
+   | `src/consts.ts` | Keep your data, merge new type definitions |
+   | `src/i18n/ui.ts` | Keep your translations, add new keys |
+   | `src/styles/tokens.css` | Keep your colors, add new tokens |
+   | `package.json` | Use new version's dependencies |
+
+4. **Complete the Merge (5 minutes)**
+
+   ```bash
+   # After resolving all conflicts
+   git commit -m "Merge theme update v1.1.0"
+
+   # Test the update
+   npm install
+   npm run dev
+   ```
+
+   **Test thoroughly before merging to main!**
+
+5. **Merge to Main (2 minutes)**
+
+   ```bash
+   # If everything works
+   git checkout main
+   git merge update-to-v1.1.0
+
+   # Clean up
+   git branch -d update-to-v1.1.0
+   ```
+
+</Steps>
+
+---
+
+## Post-Update Checklist
+
+### Development Testing
+
+- [ ] `npm install` completes without errors
+- [ ] `npm run dev` starts successfully
+- [ ] No console errors in browser
+- [ ] All pages load correctly
+- [ ] Language switching works (French ↔ German)
+- [ ] Dark mode toggle works
+- [ ] Portfolio carousel and lightbox work
+- [ ] Contact form displays correctly
+- [ ] All customizations are intact
+
+### Production Testing
+
+- [ ] `npm run build` completes without errors
+- [ ] `npm run preview` works correctly
+- [ ] Test on multiple browsers (Chrome, Firefox, Safari)
+- [ ] Test on mobile devices
+- [ ] Check Lighthouse scores (should be 90+)
+- [ ] Verify SEO meta tags
+- [ ] Test GTM integration (if used)
+
+### Content Verification
+
+- [ ] Company information is correct
+- [ ] Team members display properly
+- [ ] Portfolio projects show correctly
+- [ ] All translations are accurate
+- [ ] Images load properly
+- [ ] Links work correctly
+- [ ] Social media links are correct
+
+---
+
+## Troubleshooting
+
+### Build Errors
+
+**Error:** `Cannot find module 'astro'` or similar dependency errors
+
+```bash
+# Solution: Clean install
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Error:** `[ERROR] The plugin "astro:jsx" was referenced in "..." but not found`
+
+```bash
+# Solution: Clear Astro cache and rebuild
+rm -rf .astro
+npm run build
+```
+
+**Error:** `Unexpected token...` or syntax errors
+
+```bash
+# Solution: Check Node.js version
+node --version  # Should be 18.17.0+
+
+# Update Node.js if needed, then reinstall
+npm install
+```
+
+:::tip[Still getting errors?]
+Try clearing all caches: `rm -rf node_modules .astro dist package-lock.json && npm install`
+:::
+
+### Styling Issues
+
+**Problem:** Colors or styles look wrong
+
+1. Check for conflicting CSS in `src/styles/tokens.css`
+2. Clear browser cache (Ctrl+Shift+Delete)
+3. Compare your `tokens.css` with new version
+4. Ensure you're not overriding new CSS variables
+
+### Component Errors
+
+**Problem:** Component not rendering or throwing errors
+
+1. Check changelog for component API changes
+2. Verify you're using correct props
+3. Check browser console for specific errors
+4. Compare usage with new documentation
+
+---
+
+## Emergency Rollback
+
+:::caution[Something went wrong?]
+Don't panic. Follow these steps to restore your working version.
+:::
+
+### If You Used Git
+
+<Tabs>
+  <TabItem label="Rollback to Backup Branch">
+    ```bash
+    # List your backup branches
+    git branch | grep backup
+
+    # Switch to backup branch
+    git checkout backup-v1.0.0
+
+    # Or switch to tagged version
+    git checkout pre-update-v1.0.0
+    ```
+  </TabItem>
+
+  <TabItem label="Reset to Previous Commit">
+    ```bash
+    # View recent commits
+    git log --oneline -10
+
+    # Reset to specific commit (replace COMMIT_HASH)
+    git reset --hard COMMIT_HASH
+
+    # Force push if already pushed (use with caution)
+    git push --force
+    ```
+  </TabItem>
+</Tabs>
+
+### If You Used Manual Backup
+
+**Restore from backup folder:**
+
+```bash
+# Mac/Linux
+rm -rf astro-swiss-starter-theme
+cp -r astro-swiss-backup-2025-12-29 astro-swiss-starter-theme
+cd astro-swiss-starter-theme
+npm install
+
+# Windows (PowerShell)
+Remove-Item -Recurse -Force astro-swiss-starter-theme
+Copy-Item -Recurse astro-swiss-backup-2025-12-29 astro-swiss-starter-theme
+cd astro-swiss-starter-theme
+npm install
+```
+
+### Verify Rollback Worked
+
+```bash
+# Check version
+cat package.json | grep version
+
+# Test the site
+npm run dev
+```
+
+**You should see your previous working version running.**
+
+:::note[After successful rollback]
+Take time to understand what went wrong before attempting the update again. Check the changelog for breaking changes you might have missed.
+:::
+
+---
+
+## Update Success! 🎉
+
+Once you've completed the update and all tests pass:
+
+### Confirm Everything Works
+
+- ✅ Development server runs without errors
+- ✅ Production build completes successfully
+- ✅ All pages load correctly
+- ✅ Features work as expected
+- ✅ Your customizations are intact
+
+### Clean Up
+
+```bash
+# Remove backup files (optional)
+rm -rf my-customizations/
+rm -rf astro-swiss-backup-*/
+
+# Remove old backup branches (Git users)
+git branch -d backup-v1.0.0
+git tag -d pre-update-v1.0.0
+```
+
+### Document the Update
+
+Add a note to your project documentation:
+
+```markdown
+## Update History
+- 2025-12-29: Updated from v1.0.0 to v1.1.0
+  - New features: [list key features]
+  - Breaking changes: [list any]
+  - Notes: [any important observations]
+```
+
+---
+
+**Stay up-to-date and enjoy the latest features! 🚀**
