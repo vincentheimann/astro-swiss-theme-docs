@@ -156,6 +156,10 @@ This runs before page render to apply the correct theme immediately.
 
 ## Customizing Colors
 
+<Aside type="note">
+  **Example Colors:** The orange colors (`#fc4a1a`, `#f7b733`) shown throughout this guide are example placeholders. You should customize these to match your brand identity.
+</Aside>
+
 ### Changing Brand Colors
 
 Edit `src/styles/tokens.css`:
@@ -212,6 +216,198 @@ Use in components:
   background: var(--brand-purple);
 }
 ```
+
+---
+
+## Complete Brand Color Setup
+
+When customizing your brand colors, follow this comprehensive checklist to ensure all color references are updated consistently across your site.
+
+<Aside type="warning">
+  **Important:** Brand colors may be hardcoded in multiple locations. Updating only `tokens.css` may not be sufficient for a complete rebrand.
+</Aside>
+
+### Color Customization Checklist
+
+Use this checklist to ensure you've updated all color references:
+
+#### ✅ Step 1: Update Design Tokens
+
+**File:** `src/styles/tokens.css`
+
+```css title="src/styles/tokens.css"
+:root {
+  /* Update your primary brand color */
+  --accent: #YOUR_BRAND_COLOR;
+  --accent-rgb: R, G, B;  /* RGB values of your brand color */
+  
+  /* Update secondary color */
+  --secondary: #YOUR_SECONDARY_COLOR;
+}
+```
+
+#### ✅ Step 2: Update Theme Files
+
+Update colors for both light and dark modes:
+
+**File:** `src/styles/themes/light.css`
+
+```css title="src/styles/themes/light.css"
+[data-theme="light"] {
+  --accent: #YOUR_BRAND_COLOR;
+  --background: #ffffff;
+  --foreground: #0f1219;
+}
+```
+
+**File:** `src/styles/themes/dark.css`
+
+```css title="src/styles/themes/dark.css"
+[data-theme="dark"] {
+  --accent: #YOUR_BRAND_COLOR_DARK;  /* Often lighter for dark backgrounds */
+  --background: #050505;
+  --foreground: rgb(243, 244, 246);
+}
+```
+
+#### ✅ Step 3: Check for Hardcoded Colors
+
+<Aside type="caution">
+  **Critical:** Some components may contain hardcoded gradient colors or hex values that won't automatically update when you change `--accent`.
+</Aside>
+
+**Search your codebase for hardcoded colors:**
+
+Use your code editor's search function to find hex color values:
+- Search for `#fc4a1a` (default orange)
+- Search for `#f7b733` (default gradient color)
+- Search for any other hex colors you're replacing
+
+**Common locations to check:**
+- Component files (`src/components/**/*.astro`)
+- Page files (`src/pages/**/*.astro`)
+- Any custom layouts or templates
+
+**Example - Hardcoded gradient:**
+```astro
+<!-- ❌ Before: Hardcoded colors -->
+<div style="background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);">
+
+<!-- ✅ After: Using CSS variables -->
+<div style="background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);">
+```
+
+#### ✅ Step 4: Verify Semantic Token Alignment
+
+Ensure semantic tokens reference the correct base tokens:
+
+```css title="src/styles/tokens.css"
+:root {
+  /* ✅ Good: Semantic tokens reference base tokens */
+  --color-text-primary: var(--foreground);
+  --color-bg-primary: var(--background);
+  
+  /* ❌ Bad: Hardcoded values */
+  --color-text-primary: #0f1219;
+}
+```
+
+### Accessibility & Contrast Guidelines
+
+<Aside type="important">
+  **WCAG Compliance:** Ensure your color combinations meet accessibility standards.
+</Aside>
+
+#### Contrast Ratio Requirements
+
+- **Normal text (< 18px):** Minimum 4.5:1 contrast ratio
+- **Large text (≥ 18px or ≥ 14px bold):** Minimum 3:1 contrast ratio
+- **UI components & graphics:** Minimum 3:1 contrast ratio
+
+#### Testing Your Colors
+
+Use these tools to verify contrast ratios:
+
+1. **[WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)** - Quick online tool
+2. **[Coolors Contrast Checker](https://coolors.co/contrast-checker)** - With color palette integration
+3. **Browser DevTools** - Chrome/Edge have built-in contrast checkers
+
+**Example - Good vs. Bad Contrast:**
+
+```css
+/* ✅ Good: High contrast (7.5:1) */
+--foreground: #0f1219;
+--background: #ffffff;
+
+/* ⚠️ Caution: Borderline (4.6:1) */
+--foreground: #666666;
+--background: #ffffff;
+
+/* ❌ Bad: Fails WCAG AA (2.8:1) */
+--foreground: #999999;
+--background: #ffffff;
+```
+
+#### Dark Mode Contrast Considerations
+
+Dark mode often requires different color adjustments:
+
+```css
+/* Light mode - darker accent works */
+[data-theme="light"] {
+  --accent: #3b82f6;  /* Blue */
+}
+
+/* Dark mode - lighter accent for better contrast */
+[data-theme="dark"] {
+  --accent: #60a5fa;  /* Lighter blue */
+}
+```
+
+### Before/After Rebrand Example
+
+Here's a complete example of rebranding from orange to blue:
+
+<Tabs>
+  <TabItem label="Before (Orange)">
+    ```css
+    /* tokens.css */
+    --accent: #fc4a1a;
+    --accent-dark: #f7b733;
+    --accent-rgb: 252, 74, 26;
+    --secondary: #FFB36B;
+    ```
+  </TabItem>
+  
+  <TabItem label="After (Blue)">
+    ```css
+    /* tokens.css */
+    --accent: #3b82f6;
+    --accent-dark: #1d4ed8;
+    --accent-rgb: 59, 130, 246;
+    --secondary: #8b5cf6;
+    
+    /* themes/light.css */
+    [data-theme="light"] {
+      --accent: #3b82f6;
+    }
+    
+    /* themes/dark.css */
+    [data-theme="dark"] {
+      --accent: #60a5fa;  /* Lighter for dark backgrounds */
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+### Quick Verification
+
+After updating your colors, verify the changes:
+
+1. **Visual Check:** Browse your site in both light and dark modes
+2. **Search for Hardcoded Colors:** Run a search for hex colors (e.g., `#fc4a1a`, `#f7b733`) in your codebase
+3. **Test Contrast:** Use browser DevTools to check text contrast ratios
+4. **Check Gradients:** Verify any gradient backgrounds use CSS variables
 
 ---
 
@@ -336,13 +532,21 @@ Use in HTML:
 - **Test both themes** when changing colors
 - **Use semantic naming** (`--color-text-primary` not `--dark-gray`)
 - **Leverage Tailwind** for layout and spacing
+- **Search for hardcoded colors** in template files when rebranding
+- **Verify contrast ratios** using accessibility tools
 
 ### ❌ Don't
 
-- **Hardcode colors** in components
+- **Hardcode colors** in components or templates
 - **Skip theme testing** - always check light and dark modes
 - **Override Starwind styles directly** - use tokens instead
 - **Forget accessibility** - maintain sufficient color contrast
+- **Assume example colors are final** - `#fc4a1a` is just a placeholder for your brand color
+- **Update only `tokens.css`** - check theme files and templates too
+
+<Aside type="tip">
+  **Pro Tip:** After changing brand colors, search your entire codebase for the old hex values (e.g., `#fc4a1a`) to find any hardcoded references you might have missed.
+</Aside>
 
 ### Color Contrast
 
