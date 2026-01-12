@@ -186,7 +186,7 @@ export const portfolioDe: PortfolioProject[] = [
 | `id` | ✅ Yes | Unique identifier (use `nanoid()`) |
 | `title` | ✅ Yes | Project title |
 | `description` | ✅ Yes | Project description (supports multi-line with `\n`) |
-| `image` | ✅ Yes | Imported image or URL string |
+| `image` | ✅ Yes | Imported image/video or URL string (supports MP4, WebM, MOV, OGG) |
 | `primaryCtaText` | ❌ No | Text for primary button |
 | `primaryCtaLink` | ❌ No | URL for primary button |
 | `secondaryCtaText` | ❌ No | Text for secondary button |
@@ -198,6 +198,157 @@ export const portfolioDe: PortfolioProject[] = [
 2. The project will automatically appear in the portfolio carousel
 3. Test the lightbox by clicking on the project image
 4. Verify both language versions
+
+---
+
+## Adding Videos to Portfolio
+
+The portfolio section supports **both images and videos**, providing a richer showcase for your projects. Videos are detected automatically and displayed with enhanced UX features.
+
+### Supported Video Formats
+
+The portfolio component supports the following video formats (case-insensitive):
+- **MP4** (`.mp4`) - Recommended for best compatibility
+- **WebM** (`.webm`) - Good for web optimization
+- **MOV** (`.mov`) - Apple QuickTime format
+- **OGG** (`.ogg`) - Open format support
+
+<Aside type="tip" title="Recommended Format">
+  Use **MP4 (H.264)** for maximum browser compatibility across all devices and platforms.
+</Aside>
+
+### Adding a Video Project
+
+Adding a video works exactly like adding an image project. The component automatically detects video files and handles them appropriately.
+
+#### Option A: Local Video File
+
+<Steps>
+
+1. Add your video to `src/assets/portfolio/`
+
+   ```
+   src/assets/portfolio/
+   ├── my-project.jpg
+   └── my-demo-video.mp4  ← Add your video here
+   ```
+
+2. Import and use in `src/data/portfolio/fr.ts`:
+
+   ```typescript title="src/data/portfolio/fr.ts"
+   import { nanoid } from "nanoid";
+   import myDemoVideo from "../../assets/portfolio/my-demo-video.mp4";
+   
+   export const portfolioFr: PortfolioProject[] = [
+       // ... existing projects ...
+       
+       {
+           id: nanoid(),
+           title: "Démonstration Vidéo",
+           description: "Une présentation vidéo de notre projet.",
+           image: myDemoVideo,  // Use video file just like an image
+       },
+   ];
+   ```
+
+3. Add the same project to other language files with translated text
+
+</Steps>
+
+#### Option B: External Video URL
+
+```typescript title="src/data/portfolio/fr.ts"
+{
+    id: nanoid(),
+    title: "Projet Vidéo Externe",
+    description: "Vidéo hébergée sur un CDN ou service externe.",
+    image: "https://example.com/videos/my-video.mp4",  // External URL
+}
+```
+
+### Video Display Features
+
+Videos in the portfolio have enhanced UX features:
+
+#### Carousel Thumbnail
+- **First frame display**: Videos show their first frame as the thumbnail using `#t=0.1` timestamp
+- **Play icon overlay**: Centered play button with hover animation
+- **Visual feedback**: Darker overlay on hover with scaling play button effect
+
+#### Lightbox Playback
+- **Auto-play**: Videos attempt to play automatically when opened (with graceful fallback)
+- **Native controls**: Full video player controls (play, pause, seek, volume, fullscreen)
+- **Loading indicator**: Spinner shown while video is buffering
+- **Responsive sizing**: Videos scale to fit viewport (`max-w-[90vw]`, `max-h-[80vh]`)
+
+#### Navigation & Cleanup
+- **Seamless navigation**: Arrow keys and buttons work between images and videos
+- **Auto-stop**: Videos automatically pause when navigating away or closing lightbox
+- **Memory efficient**: Video sources are cleared to prevent background buffering
+
+### Video Best Practices
+
+**✅ Do:**
+- Compress videos before adding (recommended: under 10MB for web)
+- Use MP4 with H.264 codec for best compatibility
+- Test on both desktop and mobile devices
+- Ensure the first frame is visually appealing (it becomes the thumbnail)
+- Keep videos short (30-60 seconds recommended for portfolio showcases)
+- Add descriptive titles and descriptions
+
+**❌ Don't:**
+- Use extremely large video files (slow loading, poor UX)
+- Rely solely on autoplay (some browsers/devices restrict it)
+- Forget to test video playback on mobile
+- Use proprietary formats without MP4 fallback
+
+### Testing Video Projects
+
+After adding a video, verify the following:
+
+<Steps>
+
+1. **Carousel Display**
+   - ✅ Video thumbnail shows first frame
+   - ✅ Play icon overlay appears centered
+   - ✅ Hover effect works (darker overlay, larger play button)
+   - ✅ Click opens lightbox
+
+2. **Lightbox Playback**
+   - ✅ Video plays automatically or shows controls
+   - ✅ Controls are visible and functional
+   - ✅ Navigation counter shows correct position
+   - ✅ Previous/Next buttons work
+
+3. **Mixed Content Navigation**
+   - ✅ Arrow keys navigate between images and videos smoothly
+   - ✅ Videos stop playing when navigating away
+   - ✅ No console errors or buffering issues
+
+4. **Cleanup**
+   - ✅ Escape key closes lightbox and stops video
+   - ✅ Clicking outside lightbox closes it and stops video
+   - ✅ No memory leaks (check browser task manager)
+
+5. **Mobile Testing**
+   - ✅ Swipe gestures work for navigation
+   - ✅ Video plays on mobile devices
+   - ✅ Play button is touch-friendly
+   - ✅ Responsive sizing works correctly
+
+</Steps>
+
+### Accessibility
+
+Video content maintains full accessibility:
+- **ARIA labels**: All interactive elements properly labeled
+- **Keyboard navigation**: Tab, Enter, Escape, Arrow keys fully functional
+- **Semantic HTML**: Proper `<video>` element with fallback text
+- **Focus management**: Lightbox traps focus appropriately
+
+<Aside type="note" title="Browser Support">
+  Video playback is supported in all modern browsers. For older browsers, a fallback message is displayed: "Your browser does not support the video tag."
+</Aside>
 
 ---
 
@@ -271,14 +422,20 @@ export const ui = {
 **✅ Do:**
 - Use consistent image sizes (800x600 recommended)
 - Optimize images before importing
+- Compress videos before adding (recommended: under 10MB)
+- Use MP4 (H.264) format for videos for best compatibility
 - Add projects to all language files
 - Use `nanoid()` for unique IDs
-- Test the lightbox functionality
+- Test the lightbox functionality with both images and videos
+- Ensure video first frames are visually appealing (they become thumbnails)
+- Test video playback on mobile devices
 
 **❌ Don't:**
 - Use different projects in different languages
-- Forget to import local images
-- Use extremely large images (slow loading)
+- Forget to import local images/videos
+- Use extremely large images or videos (slow loading, poor UX)
+- Rely solely on video autoplay (some browsers restrict it)
+- Use proprietary video formats without MP4 fallback
 
 ### Translation Management
 
@@ -303,10 +460,11 @@ export const ui = {
 3. Optionally add portrait image to `public/images/employees/`
 
 ### Adding a Portfolio Project
-1. Add image to `src/assets/portfolio/` (if local)
-2. Import image in `src/data/portfolio/fr.ts`
+1. Add image/video to `src/assets/portfolio/` (if local)
+2. Import image/video in `src/data/portfolio/fr.ts`
 3. Add project object to `portfolioFr` array
 4. Repeat for `src/data/portfolio/de.ts` (and other languages)
+5. For videos: Use MP4 format for best compatibility
 
 ### Updating Company Info
 1. Edit `COMPANY` object in `src/consts.ts`
