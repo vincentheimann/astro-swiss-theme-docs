@@ -30,7 +30,6 @@ export default defineConfig({
 				{ label: 'Deployment', slug: 'deployment' },
 				{ label: 'Theme Update Guide', slug: 'guides/theme-update', badge: { text: '20-60 min', variant: 'caution' } },
 				{ label: 'Analytics & Tracking', slug: 'guides/analytics' },
-				// { label: 'Contributing', slug: 'reference/contributing' },
 				{ label: 'Support & FAQ', slug: 'reference/support' },
 			],
 			components: {
