@@ -213,7 +213,7 @@ migration-assets/
 
 
 <Aside type="tip">
-  Keep the dev server running in a separate terminal window. Changes you make will automatically reload in the browser.
+  Since Astro 7, `npm run dev` runs the dev server in the background — no separate terminal needed. Changes you make automatically reload in the browser; use `npx astro dev logs` to watch output and `npx astro dev stop` to stop it.
 </Aside>
 
 ### 2.2 Create a Git Repository (Recommended)
@@ -301,7 +301,7 @@ If your primary language is different from French, update:
 
 ```javascript title="astro.config.mjs"
 i18n: {
-    defaultLocale: "fr", // Change to "de", "en", etc. if needed
+    defaultLocale: "fr", // Change to "de" if needed — other locales (e.g. "en") first need full translations, see Adding Languages
     locales: ["fr", "de"], // List all languages you support
     routing: {
         prefixDefaultLocale: false,
@@ -842,7 +842,7 @@ Improve your search engine visibility:
     - ✅ Check translation key exists in `src/i18n/ui.ts`
     - ✅ Verify language code matches (`fr`, `de`, etc.)
     - ✅ Ensure `as const` is present in ui.ts
-    - ✅ Restart dev server after changing translations
+    - ✅ Restart dev server after changing translations (`npx astro dev stop && npm run dev`)
   </TabItem>
 
   <TabItem label="Dark Mode Issues">

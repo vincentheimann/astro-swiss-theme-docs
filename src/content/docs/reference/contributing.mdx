@@ -12,7 +12,7 @@ Learn how to contribute to the Astro Swiss Theme project.
 ### Prerequisites
 
 - **Node.js** 22.12 or higher
-- **npm** 9.x or higher
+- **npm** 10.x or higher (bundled with Node.js 22)
 - **Git**
 
 ### Getting Started
@@ -44,7 +44,9 @@ Learn how to contribute to the Astro Swiss Theme project.
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start dev server with hot reload |
+| `npm run dev` | Start dev server in the background (hot reload) |
+| `npx astro dev logs` | Watch the running dev server's output |
+| `npx astro dev stop` | Stop the background dev server |
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run astro check` | Run TypeScript type checking |

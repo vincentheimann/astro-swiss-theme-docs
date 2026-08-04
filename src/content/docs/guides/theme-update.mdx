@@ -142,11 +142,11 @@ This method manually merges new features while preserving your work.
 
      <TabItem label="Manual Backup">
        ```bash
-       # Windows
-       xcopy /E /I astro-swiss-starter-theme astro-swiss-backup-2025-12-29
+       # Windows (use today's date)
+       xcopy /E /I astro-swiss-starter-theme astro-swiss-backup-YYYY-MM-DD
 
-       # Mac/Linux
-       cp -r astro-swiss-starter-theme astro-swiss-backup-2025-12-29
+       # Mac/Linux (use today's date)
+       cp -r astro-swiss-starter-theme astro-swiss-backup-YYYY-MM-DD
        ```
      </TabItem>
    </Tabs>
@@ -203,8 +203,11 @@ This method manually merges new features while preserving your work.
 6. **Test Thoroughly (10-15 minutes)**
 
    ```bash
-   # Start dev server
+   # Start dev server (runs in the background since Astro 7)
    npm run dev
+
+   # Check that it started cleanly
+   npx astro dev logs
    ```
 
    **Verify in browser (http://localhost:4321):**
@@ -445,7 +448,7 @@ This method requires Git knowledge and the theme repository as a remote. If you'
 ### Development Testing
 
 - [ ] `npm install` completes without errors
-- [ ] `npm run dev` starts successfully
+- [ ] `npm run dev` starts successfully (check `npx astro dev logs` — the command returns immediately since Astro 7)
 - [ ] No console errors in browser
 - [ ] All pages load correctly
 - [ ] Language switching works (French ↔ German)
@@ -571,15 +574,15 @@ Don't panic. Follow these steps to restore your working version.
 **Restore from backup folder:**
 
 ```bash
-# Mac/Linux
+# Mac/Linux (use your backup folder's date)
 rm -rf astro-swiss-starter-theme
-cp -r astro-swiss-backup-2025-12-29 astro-swiss-starter-theme
+cp -r astro-swiss-backup-YYYY-MM-DD astro-swiss-starter-theme
 cd astro-swiss-starter-theme
 npm install
 
 # Windows (PowerShell)
 Remove-Item -Recurse -Force astro-swiss-starter-theme
-Copy-Item -Recurse astro-swiss-backup-2025-12-29 astro-swiss-starter-theme
+Copy-Item -Recurse astro-swiss-backup-YYYY-MM-DD astro-swiss-starter-theme
 cd astro-swiss-starter-theme
 npm install
 ```
@@ -632,7 +635,7 @@ Add a note to your project documentation:
 
 ```markdown
 ## Update History
-- 2025-12-29: Updated from v1.0.0 to v1.1.0
+- YYYY-MM-DD: Updated from v1.0.0 to v1.1.0
   - New features: [list key features]
   - Breaking changes: [list any]
   - Notes: [any important observations]

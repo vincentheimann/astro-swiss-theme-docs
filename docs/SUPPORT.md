@@ -123,13 +123,13 @@ Site URL: https://mysite.com
 ### Installation & Setup
 
 **Q: What are the system requirements?**
-A: You need Node.js 18+ and npm. See [Getting Started](GETTING_STARTED.md) for details.
+A: You need Node.js 22.12+ and npm. See [Getting Started](GETTING_STARTED.md) for details.
 
 **Q: How do I install the theme?**
 A: Extract the zip file, run `npm install`, then `npm run dev`. Full instructions in [Getting Started](GETTING_STARTED.md).
 
 **Q: The build fails with errors. What should I do?**
-A: Make sure you're using Node.js 18 or higher. Delete `node_modules` and `package-lock.json`, then run `npm install` again.
+A: Make sure you're using Node.js 22.12 or higher. Delete `node_modules` and `package-lock.json`, then run `npm install` again.
 
 ### Customization
 

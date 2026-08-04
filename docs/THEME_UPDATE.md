@@ -446,7 +446,7 @@ Some updates may include breaking changes marked with ⚠️ in the changelog.
 
 ### Dependency Updates
 
-**Example:** Astro 5.16 → Astro 6.0
+**Example:** Astro 7.1 → Astro 8.0
 
 ```bash
 # Update dependencies

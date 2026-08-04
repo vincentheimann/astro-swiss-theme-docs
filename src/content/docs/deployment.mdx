@@ -77,12 +77,12 @@ dist/
    [build]
      command = "npm run build"
      publish = "dist"
-   
-   [[redirects]]
-     from = "/*"
-     to = "/index.html"
-     status = 200
    ```
+
+   No redirect rules are needed: this is a static multi-page build, and Netlify
+   automatically serves the theme's `404.html` for unknown URLs. Do **not** add a
+   catch-all `/* → /index.html` rewrite — it would silently serve the homepage
+   instead of a 404 for mistyped or removed URLs.
 
 2. **Deploy:**
    
@@ -122,7 +122,7 @@ Variables prefixed with `PUBLIC_` are available in client-side code.
 **Create `.env` file:**
 ```bash title=".env"
 PUBLIC_SITE_URL=https://yourdomain.com
-PUBLIC_GA_ID=G-XXXXXXXXXX
+PUBLIC_GTM_ID=GTM-XXXXXXX
 ```
 
 **Use in components:**
@@ -136,7 +136,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 
 ### Private Variables
 
-Variables without `PUBLIC_` prefix are only available server-side.
+Variables without the `PUBLIC_` prefix are only available at build time (and server-side, if you opt a route into on-demand rendering) — they are never exposed to the browser.
 
 ```bash title=".env"
 API_KEY=secret-key-here

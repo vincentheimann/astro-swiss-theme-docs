@@ -101,7 +101,7 @@ fr: {
 }
 ```
 
-Do the same for the `de:` section (German) if you're using both languages.
+Do the same for the `de:` section (German) — and the `en:` section (English) if you're on the free starter theme, which also ships English out of the box.
 
 ---
 
@@ -109,13 +109,13 @@ Do the same for the `de:` section (German) if you're using both languages.
 
 You now have a **multilingual website** with:
 
-- 🌍 French & German language support
+- 🌍 French & German language support (plus English in the free starter theme)
 - 🌓 Automatic dark/light mode
 - 📱 Mobile-responsive design
 - ⚡ Blazing-fast performance
 
 <Aside type="note">
-  The dev server automatically reloads when you make changes. Keep it running while you customize!
+  Since Astro 7, `npm run dev` starts the dev server in the background and returns immediately. It reloads automatically when you make changes — use `npx astro dev logs` to watch its output and `npx astro dev stop` to stop it.
 </Aside>
 
 ---
@@ -177,5 +177,5 @@ Questions or issues?
 ---
 
 <Aside type="tip" title="Pro tip">
-  Keep the dev server running (`npm run dev`) while you make changes. Everything updates automatically!
+  The dev server (`npm run dev`) keeps running in the background while you make changes — everything updates automatically. Stop it with `npx astro dev stop` when you're done.
 </Aside>
