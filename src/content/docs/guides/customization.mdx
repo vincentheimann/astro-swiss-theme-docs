@@ -63,7 +63,7 @@ All user-facing text that needs translation is stored here. Edit the translation
 </Tabs>
 
 <Aside type="tip">
-  Keep translation keys consistent across all languages. If you add a new key in French, add it in German (and all other languages) too.
+  Keep translation keys consistent across all languages. If you add a new key in French, add it in German and English (and all other languages) too.
 </Aside>
 
 ### Site Metadata
@@ -185,8 +185,10 @@ For i18n support, create the page in each language folder:
 ```
 src/pages/
 ├── about.astro           # French (default) - /about
-└── de/
-    └── about.astro       # German - /de/about
+├── de/
+│   └── about.astro       # German - /de/about
+└── en/
+    └── about.astro       # English - /en/about
 ```
 
 Each file uses the same structure but pulls translations from `ui.ts`:

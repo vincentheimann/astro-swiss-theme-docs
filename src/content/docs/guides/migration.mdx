@@ -291,6 +291,18 @@ Update the site title, description, and business information for each language:
     }
     ```
   </TabItem>
+
+  <TabItem label="English">
+    ```typescript title="src/i18n/ui.ts"
+    en: {
+        'site.title': 'Your Company | Your Tagline',
+        'site.description': 'Your SEO-optimized description here',
+        'business.tagline': 'Your compelling tagline',
+        'business.description': 'Brief description of your business and what you do',
+        // ... keep other translations
+    }
+    ```
+  </TabItem>
 </Tabs>
 
 ### 3.3 Configure Default Language
@@ -301,8 +313,8 @@ If your primary language is different from French, update:
 
 ```javascript title="astro.config.mjs"
 i18n: {
-    defaultLocale: "fr", // Change to "de" if needed — other locales (e.g. "en") first need full translations, see Adding Languages
-    locales: ["fr", "de"], // List all languages you support
+    defaultLocale: "fr", // Change to "de" or "en" if needed — both ship with full translations
+    locales: ["fr", "de", "en"], // List all languages you support
     routing: {
         prefixDefaultLocale: false,
     },
@@ -347,7 +359,7 @@ fr: {
 }
 ```
 
-Repeat for German and any other languages.
+Repeat for German, English and any other languages.
 
 ### 4.2 Customize Service Icons (Optional)
 
@@ -470,7 +482,7 @@ export const portfolioFr: PortfolioProject[] = [
 ];
 ```
 
-Repeat for German (`src/data/portfolio/de.ts`) with translated content.
+Repeat for German (`src/data/portfolio/de.ts`) and English (`src/data/portfolio/en.ts`) with translated content.
 
 <Aside type="tip">
   You can use external URLs for images instead of importing local files:
@@ -548,15 +560,15 @@ Replace `public/favicon.svg` with your own favicon:
 
 ### Supporting Multiple Languages
 
-The template supports French and German by default. Configure languages based on your needs:
+The template supports French, German and English by default. Configure languages based on your needs:
 
 <Tabs>
-  <TabItem label="Keep Both Languages">
-    If you want to support both French and German:
+  <TabItem label="Keep All Languages">
+    If you want to support French, German and English:
     
     1. ✅ Ensure all translations are complete in `src/i18n/ui.ts`
-    2. ✅ Add content to both `src/data/portfolio/fr.ts` and `de.ts`
-    3. ✅ Test both language versions
+    2. ✅ Add content to `src/data/portfolio/fr.ts`, `de.ts` and `en.ts`
+    3. ✅ Test all language versions
   </TabItem>
 
   <TabItem label="Remove a Language">
@@ -566,7 +578,7 @@ The template supports French and German by default. Configure languages based on
     ```javascript
     i18n: {
         defaultLocale: "fr",
-        locales: ["fr"], // Remove "de"
+        locales: ["fr"], // Remove "de" and "en"
     }
     ```
 
@@ -578,11 +590,11 @@ The template supports French and German by default. Configure languages based on
     } as const;
     ```
 
-    **3. Remove German translations:** Delete the `de: { ... }` section from `ui.ts`
+    **3. Remove unused translations:** Delete the `de: { ... }` and `en: { ... }` sections from `ui.ts`
 
-    **4. Remove German portfolio:** Delete `src/data/portfolio/de.ts`
+    **4. Remove unused portfolios:** Delete `src/data/portfolio/de.ts` and `en.ts`
 
-    **5. Remove German pages:** Delete `src/pages/de/` folder
+    **5. Remove unused pages:** Delete the `src/pages/de/` and `src/pages/en/` folders
   </TabItem>
 
   <TabItem label="Add a New Language">
@@ -686,7 +698,7 @@ Go through each section and verify:
 If supporting multiple languages:
 
 - ✅ Switch between languages and verify all content
-- ✅ Check that URLs are correct (`/` for default, `/de/` for German)
+- ✅ Check that URLs are correct (`/` for default, `/de/` for German, `/en/` for English)
 - ✅ Verify language preference persists on page reload
 - ✅ Test all sections in each language
 

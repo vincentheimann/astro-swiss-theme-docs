@@ -76,6 +76,13 @@ export const ui = {
         'employee.ABC.title': 'Marketing Direktorin',
         'employee.ABC.bio': 'Anna leitet unsere Marketingstrategie mit Kreativität und Innovation.',
     },
+    en: {
+        // ... existing translations ...
+        
+        // Add employee translations (English)
+        'employee.ABC.title': 'Marketing Director',
+        'employee.ABC.bio': 'Anna leads our marketing strategy with creativity and innovation.',
+    },
 } as const;
 ```
 
@@ -101,7 +108,7 @@ If you leave the `portrait` field empty, the component will automatically genera
 
 1. Save all files
 2. The employee will automatically appear in the Team section
-3. Check both language versions to ensure translations are correct
+3. Check all language versions to ensure translations are correct
 
 ---
 
@@ -179,6 +186,8 @@ export const portfolioDe: PortfolioProject[] = [
 ];
 ```
 
+Repeat for English (`src/data/portfolio/en.ts`) with English translations.
+
 ### Project Properties Explained
 
 | Property | Required | Description |
@@ -197,7 +206,7 @@ export const portfolioDe: PortfolioProject[] = [
 1. Save all files
 2. The project will automatically appear in the portfolio carousel
 3. Test the lightbox by clicking on the project image
-4. Verify both language versions
+4. Verify all language versions
 
 ---
 

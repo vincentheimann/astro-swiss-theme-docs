@@ -45,7 +45,7 @@ export default defineConfig({
   },
   i18n: {
     defaultLocale: "fr",
-    locales: ["fr", "de"],
+    locales: ["fr", "de", "en"],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -73,11 +73,11 @@ locales: ["fr", "de", "it", "rm"]  // Support 4 languages
 
 #### `routing.prefixDefaultLocale`
 
-When `false`, the default language is served at `/` instead of `/fr/`. Other languages use prefixes like `/de/`.
+When `false`, the default language is served at `/` instead of `/fr/`. Other languages use prefixes like `/de/` and `/en/`.
 
 ```javascript
-prefixDefaultLocale: false  // French at /, German at /de/
-prefixDefaultLocale: true   // French at /fr/, German at /de/
+prefixDefaultLocale: false  // French at /, German at /de/, English at /en/
+prefixDefaultLocale: true   // French at /fr/, German at /de/, English at /en/
 ```
 
 ### Adding a New Locale
@@ -235,6 +235,7 @@ This file defines all languages and translations for your site.
 export const languages = {
   fr: { name: 'Français', flag: '🇫🇷' },
   de: { name: 'Deutsch', flag: '🇩🇪' },
+  en: { name: 'English', flag: '🇬🇧' },
 } as const;
 
 export type Language = keyof typeof languages;

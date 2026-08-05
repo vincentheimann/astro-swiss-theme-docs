@@ -7,6 +7,8 @@ import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
 
 **Goal:** Add Italian support in 4 steps (~15 minutes).
 
+Both themes ship **French, German and English** out of the box. This guide adds a fourth language — Italian — and the same steps work for any other language.
+
 ![Language selector](../../../assets/docs/language-selector.webp)
 
 ## Complete Example: Adding Italian
@@ -17,20 +19,22 @@ import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
    
    Add the language to the `languages` object:
    
-   ```typescript title="src/i18n/ui.ts" ins={4}
+   ```typescript title="src/i18n/ui.ts" ins={5}
    export const languages = {
      fr: { name: 'Français', flag: '🇫🇷' },
      de: { name: 'Deutsch', flag: '🇩🇪' },
+     en: { name: 'English', flag: '🇬🇧' },
      it: { name: 'Italiano', flag: '🇮🇹' },
    } as const;
    ```
    
    Add all translations to the `ui` object:
    
-   ```typescript title="src/i18n/ui.ts"  ins={4-18}
+   ```typescript title="src/i18n/ui.ts"  ins={5-19}
    export const ui = {
      fr: { /* French translations */ },
      de: { /* German translations */ },
+     en: { /* English translations */ },
      it: {
        'nav.home': 'Home',
        'nav.work': 'I nostri lavori',
@@ -43,13 +47,13 @@ import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
        'author.name': 'Tu Numero',
        'author.email': 'tu@email.com',
        'theme.toggle': 'Cambia argomento',
-       // ... copy all other keys from FR or DE
+       // ... copy all other keys from FR, DE or EN
      },
    } as const;
    ```
    
    :::tip[Translation Tip]
-   Copy all keys from the `fr` or `de` section to ensure you have complete translations.
+   Copy all keys from the `fr`, `de` or `en` section to ensure you have complete translations.
    :::
 
 2. **Update `astro.config.mjs`**
@@ -59,7 +63,7 @@ import { Aside, Steps, Card, CardGrid } from '@astrojs/starlight/components';
    ```javascript title="astro.config.mjs" ins={3}
    i18n: {
      defaultLocale: "fr",
-     locales: ["fr", "de", "it"],
+     locales: ["fr", "de", "en", "it"],
      routing: {
        prefixDefaultLocale: false,
      },
@@ -114,17 +118,19 @@ const lang: Language = (currentLocale && currentLocale in languages)
 
 **No hardcoded checks!** If you add a language to `ui.ts`, it's automatically supported.
 
-### Dynamic Redirect in Middleware
+### First-Visit Detection on the Homepage
 
-The `middleware.ts` redirects based on the `languages` object:
+The default-locale homepage (`src/pages/index.astro`) ships a small inline script that redirects first-time visitors based on `navigator.language`. Its list of valid locales is derived from the `languages` object, and an explicit choice made in the language selector (stored in `localStorage`) is never overridden:
 
 ```typescript
-if (preferredLang in languages && preferredLang !== defaultLang) {
-    return redirect(`/${preferredLang}/`);
+var stored = localStorage.getItem("lang");
+var lang = stored || (navigator.language || "").split("-")[0].toLowerCase();
+if (lang && lang !== defaultLang && locales.indexOf(lang) !== -1) {
+  location.replace("/" + lang + "/");
 }
 ```
 
-**Fully scalable** - Any language you add will be auto-detected from the browser.
+**Fully scalable** - Any language you add will be auto-detected from the browser, on any static host.
 
 ### Language Selector
 
@@ -146,7 +152,7 @@ The easiest way is to:
 
 <Steps>
 
-1. Copy the French or German section from `ui.ts`
+1. Copy the French, German or English section from `ui.ts`
 2. Paste it as your new language
 3. Translate each value
 
@@ -179,10 +185,11 @@ src/
 │   └── utils.ts       ← No changes needed (dynamic)
 ├── layouts/
 │   └── BaseLayout.astro  ← No changes needed (dynamic)
-├── middleware.ts      ← No changes needed (dynamic)
 ├── pages/
-│   ├── index.astro    ← French (default)
+│   ├── index.astro    ← French (default) + first-visit detection script (dynamic)
 │   ├── de/
+│   │   └── index.astro
+│   ├── en/
 │   │   └── index.astro
 │   └── it/            ← Create this (Step 3)
 │       └── index.astro
@@ -193,11 +200,12 @@ src/
 
 ## Example: Adding Spanish
 
-```typescript title="src/i18n/ui.ts" ins={5, 15-21}
+```typescript title="src/i18n/ui.ts" ins={6, 19-25}
 // 1. src/i18n/ui.ts
 export const languages = {
   fr: { name: 'Français', flag: '🇫🇷' },
   de: { name: 'Deutsch', flag: '🇩🇪' },
+  en: { name: 'English', flag: '🇬🇧' },
   es: { name: 'Español', flag: '🇪🇸' },
 } as const;
 
@@ -207,6 +215,9 @@ export const ui = {
   },
   de: {
     // ... German translations
+  },
+  en: {
+    // ... English translations
   },
   es: {
     'nav.home': 'Inicio',
@@ -220,7 +231,7 @@ export const ui = {
 
 ```javascript title="astro.config.mjs" ins={2}
 // 2. astro.config.mjs
-locales: ["fr", "de", "es"],
+locales: ["fr", "de", "en", "es"],
 ```
 
 ```
@@ -242,7 +253,7 @@ Verify all translation keys exist in the `ui` object for that language.
 
 ### Browser not auto-redirecting?
 
-Clear your browser cache or test in incognito. The middleware caches the `accept-language` header.
+Detection runs client-side on the first visit and respects a language stored in `localStorage` (key `lang`). Clear that key or test in incognito — a previous explicit choice in the language selector is never overridden.
 
 ### TypeScript errors?
 

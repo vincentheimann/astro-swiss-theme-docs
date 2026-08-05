@@ -52,6 +52,9 @@ dist/
 ├── index.html           # French homepage (default locale)
 ├── de/
 │   └──index.html      # German homepage
+├── en/
+│   └──index.html      # English homepage
+├── 404.html            # Language-aware 404 page
 ├── _astro/             # Bundled CSS and JS
 ├── fonts/              # Font files
 └── favicon.svg
@@ -94,6 +97,28 @@ dist/
      ```
 
 </Steps>
+
+### Language detection in production
+
+The theme ships **client-side first-visit detection**: a small inline script on the default-locale homepage reads `navigator.language` and redirects first-time visitors to `/de/` or `/en/` — it works on any static host, needs no configuration, and never overrides a language the visitor picked explicitly in the selector.
+
+Optionally, Netlify users can add zero-JS server-side redirects on top:
+
+```toml title="netlify.toml"
+[[redirects]]
+  from = "/"
+  to = "/de/"
+  status = 302
+  conditions = { Language = ["de"] }
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = { Language = ["en"] }
+```
+
+Broken URLs serve a real **language-aware 404 page** (there is no SPA catch-all): visitors get a proper 404 status with the message in French, German and English.
 
 ---
 
