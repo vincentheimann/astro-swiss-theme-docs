@@ -34,11 +34,12 @@ All user-facing text that needs translation is stored here. Edit the translation
   <TabItem label="Business Info">
     ```typescript title="src/i18n/ui.ts"
     fr: {
-      'business.name': 'Votre Entreprise',
       'business.tagline': 'Votre slogan ici',
       'business.description': 'Description de votre entreprise...',
     }
     ```
+
+    The company **name** is language-agnostic and lives in `src/consts.ts` (`COMPANY.name`).
   </TabItem>
   
   <TabItem label="Navigation">
@@ -116,14 +117,12 @@ The header includes:
 
 **Customize the logo:**
 
-```astro title="src/components/Header.astro"
-<a href="/" class="logo">
-  <!-- Replace with your logo image -->
-  <img src="/logo.svg" alt="Your Brand" />
-  <!-- Or use text -->
-  <span>{t('business.name')}</span>
-</a>
-```
+The logo is not inlined in the header markup — replace the logo files themselves:
+
+- `src/assets/logo.svg` — imported by `Header.astro` and `Landing.astro`, optimized by Astro at build time
+- `public/logo.svg` — referenced by the SEO structured data in `BaseLayout.astro`
+
+Keep both files in sync so the header and search-engine previews show the same brand.
 
 **Modify navigation items:**
 

@@ -40,11 +40,9 @@ Both themes ship **French, German and English** out of the box. This guide adds 
        'nav.work': 'I nostri lavori',
        'nav.about': 'Informazioni',
        'nav.contact': 'Contattaci',
-       'business.name': 'La tua azienda',
        'business.tagline': 'Il tagline della tua azienda',
        'site.title': 'Titolo del tuo sito',
        'site.description': 'Descrizione del tuo sito per SEO',
-       'author.name': 'Tu Numero',
        'author.email': 'tu@email.com',
        'theme.toggle': 'Cambia argomento',
        // ... copy all other keys from FR, DE or EN
@@ -163,16 +161,15 @@ The easiest way is to:
 Make sure to include all these keys (copy from existing languages):
 
 - Navigation: `nav.*`
+- Call to action: `cta.*`
 - Business: `business.*`
 - Portfolio: `portfolio.*`
-- Owner: `owner.*`
+- Services: `services.*`
 - Contact: `contact.*`
 - Site metadata: `site.*`
-- Author: `author.*`
+- Theme toggle: `theme.*`
 
-### Keep Author Info Consistent
-
-Some values like `author.email` and `author.phone` should be the same across all languages (unless you have different contact info per region).
+Language-agnostic contact data (emails, phone numbers) lives in `src/consts.ts` and needs no translation.
 
 ---
 

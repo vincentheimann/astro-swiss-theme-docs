@@ -37,12 +37,18 @@ This file configures Astro's build system and i18n routing.
 
 ```javascript title="astro.config.mjs"
 import tailwindcss from "@tailwindcss/vite";
+// @ts-check
 import { defineConfig } from "astro/config";
 
+// https://astro.build/config
 export default defineConfig({
+  // IMPORTANT: Replace with your actual domain before deployment
+  site: "https://example.com",
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   i18n: {
     defaultLocale: "fr",
     locales: ["fr", "de", "en"],
@@ -52,6 +58,10 @@ export default defineConfig({
   },
 });
 ```
+
+<Aside type="note">
+  Don't forget `site` — it is used for the sitemap, canonical URLs and hreflang tags. The paid theme's config additionally contains the dev-only setup wizard integration.
+</Aside>
 
 ### i18n Options
 
@@ -181,28 +191,42 @@ This automatically updates `starwind.config.json` and installs the component fil
 
 **File:** `src/consts.ts`
 
-This file contains language-agnostic constants like contact information.
+This file contains language-agnostic data: your company's contact information (`COMPANY`) and your team members (`EMPLOYEES`).
 
 ### Current Configuration
 
-```typescript title="src/consts.ts"
-// Language-agnostic contact information
-export const AUTHOR_NAME = 'John Doe';
-export const AUTHOR_EMAIL = 'info@professionalservices.com';
-export const AUTHOR_PHONE = '+41 89 123 45 67';
-export const AUTHOR_LINKEDIN_LINK = 'https://www.linkedin.com/in/vincentheimann/';
+```typescript title="src/consts.ts (abridged)"
+export const COMPANY: CompanyInfo = {
+    name: "SwissDigital Agency",
+    address: "Avenue de la Gare 15",
+    pobox: "", // Leave empty if not used
+    city: "CH-1003 Lausanne",
+    phone: "+41 21 555 01 23",
+    email: "contact@swissdigital.example",
+    mapsUrl: "https://maps.google.com/?q=Avenue+de+la+Gare+15+1003+Lausanne",
+    socials: {
+        linkedin: "https://www.linkedin.com/company/example",
+        facebook: "",
+        instagram: "https://www.instagram.com/example",
+        twitter: "",
+        github: "",
+    },
+};
+
+export const EMPLOYEES: Record<string, EmployeeInfo> = {
+    SMA: {
+        id: "SMA", // trigram ID, e.g. SMA for Sophie Martin
+        name: "Sophie Martin",
+        portrait: "/images/team/sophie-martin.webp", // "" if not available
+        email: "sophie.martin@swissdigital.example",
+        phone: "+41 21 555 01 24",
+        socials: { linkedin: "https://www.linkedin.com/in/example", facebook: "", instagram: "", twitter: "", github: "" },
+    },
+    // ... more employees, keyed by trigram ID
+};
 ```
 
-### Customization
-
-Replace these values with your actual information:
-
-```typescript title="src/consts.ts"
-export const AUTHOR_NAME = 'Your Name';
-export const AUTHOR_EMAIL = 'your.email@example.com';
-export const AUTHOR_PHONE = '+1 234 567 8900';
-export const AUTHOR_LINKEDIN_LINK = 'https://www.linkedin.com/in/yourprofile/';
-```
+The full file also defines the `CompanyInfo`, `EmployeeInfo` and `SocialLinks` interfaces — replace the values, keep the shapes. Empty strings are fine for anything you don't use. Employee **titles and bios are translatable** and live in `src/i18n/ui.ts`, not here.
 
 ### Usage in Components
 
@@ -210,11 +234,11 @@ Import these constants in your components:
 
 ```astro
 ---
-import { AUTHOR_EMAIL, AUTHOR_PHONE } from '@/consts';
+import { COMPANY } from "@/consts";
 ---
 
-<a href={`mailto:${AUTHOR_EMAIL}`}>{AUTHOR_EMAIL}</a>
-<a href={`tel:${AUTHOR_PHONE}`}>{AUTHOR_PHONE}</a>
+<a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+<a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
 ```
 
 <Aside type="note">
@@ -233,9 +257,9 @@ This file defines all languages and translations for your site.
 
 ```typescript title="src/i18n/ui.ts"
 export const languages = {
-  fr: { name: 'Français', flag: '🇫🇷' },
-  de: { name: 'Deutsch', flag: '🇩🇪' },
-  en: { name: 'English', flag: '🇬🇧' },
+  fr: { name: 'Français', flag: 'FR' },
+  de: { name: 'Deutsch', flag: 'DE' },
+  en: { name: 'English', flag: 'EN' },
 } as const;
 
 export type Language = keyof typeof languages;
@@ -271,12 +295,11 @@ export const ui = {
 |----------|------|---------|
 | **Navigation** | `nav.*` | Menu items, links |
 | **CTA** | `cta.*` | Call-to-action buttons |
-| **Business** | `business.*` | Company name, tagline, description |
+| **Business** | `business.*` | Tagline and description |
 | **Portfolio** | `portfolio.*` | Portfolio section |
-| **Owner** | `owner.*` | Owner/founder information |
-| **Contact** | `contact.*` | Contact form and info |
+| **Services** | `services.*` | Services section (titles and descriptions) |
+| **Contact** | `contact.*` | Contact form, info card and email texts |
 | **Site** | `site.*` | SEO metadata (title, description) |
-| **Author** | `author.*` | Author details |
 | **Theme** | `theme.*` | Theme toggle labels |
 
 ### Customizing Translations
@@ -284,8 +307,8 @@ export const ui = {
 **1. Edit existing translations:**
 
 ```typescript
-'business.name': 'Your Company Name',
 'business.tagline': 'Your tagline here',
+'business.description': 'What your company does, in one or two sentences.',
 ```
 
 **2. Add new translation keys:**
@@ -305,8 +328,9 @@ de: {
 
 ```astro
 ---
-import { useTranslations } from '@/i18n/utils';
-const t = useTranslations(Astro.currentLocale);
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url, Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <p>{t('footer.copyright')}</p>

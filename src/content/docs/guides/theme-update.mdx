@@ -38,7 +38,7 @@ Find your current version in `package.json`:
 - ⚠️ Breaking changes
 - 📝 Migration instructions
 
-Visit the [Changelog](https://github.com/vincentheimann/astro-swiss-starter-theme/blob/main/CHANGELOG.md) to see what each release contains. New releases are optional purchases at the same low price — your current release keeps working forever.
+Every release ZIP bundles its changelog: open `CHANGELOG.md` at the root of the extracted theme to see what each release contains. New releases are optional purchases at the same low price — your current release keeps working forever.
 
 :::note[What's New in This Version?]
 Check the changelog for a summary of changes. This helps you decide if the new release is worth buying and what to test afterward.
@@ -96,9 +96,9 @@ You'll reference it during the update process to ensure nothing is missed.
    - Yes → Use [Method 1: Safe Update](#method-1-safe-update)
    - No → Continue to question 3
 
-3. **Are you comfortable with Git and merge conflicts?**
-   - Yes → Use [Method 3: Git Merge](#method-3-git-merge) (fastest)
-   - No → Use [Method 2: Fresh Install](#method-2-fresh-install) (safest)
+3. **Are you comfortable with Git and merge conflicts — and do you have access to the theme's GitHub repository?**
+   - Yes to both → Use [Method 3: Git Merge](#method-3-git-merge) (fastest)
+   - Otherwise → Use [Method 2: Fresh Install](#method-2-fresh-install) (safest)
 
 ### Method Comparison
 
@@ -358,8 +358,8 @@ This method starts fresh and re-applies your customizations.
 
 **Total time:** ⏱️ 15-30 minutes (depending on conflicts)
 
-:::tip[Git knowledge required]
-This method requires Git knowledge and the theme repository as a remote. If you're not comfortable resolving merge conflicts, use Method 1 or 2 instead.
+:::caution[Requires repository access]
+This method requires Git knowledge **and access to the theme's private GitHub repository** — a ZIP purchase alone does not include it. Without repository access, or if you're not comfortable resolving merge conflicts, use Method 1 or 2 instead.
 :::
 
 <Steps>
