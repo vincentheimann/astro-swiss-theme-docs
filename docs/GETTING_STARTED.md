@@ -1,7 +1,7 @@
 # Getting Started
 
 > [!IMPORTANT]
-> **License**: This is the free version for personal use and evaluation. For client projects and commercial use, [upgrade to Premium](https://themeforest.net).
+> **License**: This is the free version for personal use and evaluation. For client projects and commercial use, [upgrade to Premium](https://astroswiss.com).
 
 Get your site running and customized quickly with this guide.
 

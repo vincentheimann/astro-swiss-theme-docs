@@ -39,11 +39,11 @@ Visit `http://localhost:4321` to see your site.
 | Tailwind CSS v4 | ✅ | ✅ |
 | **Use for client projects** | ❌ | ✅ |
 | **Unlimited end products** | Single project | ✅ Unlimited |
-| **Priority support** | Community | ✅ 24-48h email |
+| **Support** | Community | Self-serve docs + 14-day money-back guarantee |
 | **Commercial rights** | Personal use only | ✅ Full commercial |
-| **Continuous updates** | Security fixes | ✅ New features |
+| **New releases** | Security fixes | Optional purchases at the same low price |
 | Documentation | ✅ | ✅ |
-| Price | Free | [Purchase](https://themeforest.net) |
+| Price | Free | [Buy once, yours forever](https://astroswiss.com) |
 
 > [!NOTE]
 > **Free Theme**: Perfect for learning, personal projects, and evaluation.
@@ -127,17 +127,17 @@ astro-swiss-starter-theme/
 - ❌ Commercial use
 
 ### Premium Version
-- ✅ **Use for unlimited client projects**
-- ✅ **Unlimited end products**
+- ✅ **Use for unlimited client projects** (Extended License)
+- ✅ **Unlimited end products** (Extended License)
 - ✅ **Full commercial rights**
-- ✅ **Priority email support (24-48h)**
-- ✅ **Continuous feature updates**
+- ✅ **Buy once at a low price — the release is yours forever**
+- ✅ **New releases as optional purchases at the same low price**
 
-**[Upgrade to Premium →](https://themeforest.net)**
+**[Upgrade to Premium →](https://astroswiss.com)**
 
 ---
 
-**Questions about licensing?** Contact: heimvin@gmail.com
+**Questions about licensing?** Contact: hello@astroswiss.com
 
 ---
 
