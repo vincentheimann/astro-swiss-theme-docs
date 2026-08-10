@@ -40,7 +40,7 @@ export const EMPLOYEES: Record<string, EmployeeInfo> = {
     ABC: {  // Use a 3-letter trigram (e.g., initials)
         id: "ABC",
         name: "Anna Brown Carter",
-        portrait: "/images/employees/anna-brown.jpg", // Optional: path to portrait image
+        portrait: "/images/team/anna-brown.jpg", // Optional: path to portrait image
         email: "anna.brown@yourcompany.com",
         phone: "+41 89 123 45 70",
         socials: {
@@ -93,7 +93,7 @@ export const ui = {
 
 If you have a portrait image:
 
-1. Add the image to `public/images/employees/`
+1. Add the image to `public/images/team/`
 2. Reference it in `consts.ts` as shown above
 3. Recommended size: 240x240px or larger (square)
 
@@ -402,7 +402,7 @@ export const ui = {
 ### Adding an Employee
 1. Add to `EMPLOYEES` in [src/consts.ts](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/consts.ts)
 2. Add translations in [src/i18n/ui.ts](file:///c:/Git/Astro%20Starter%20Theme%20Starwind%20i18n/astro-swiss-starter-theme/src/i18n/ui.ts) (all languages)
-3. Optionally add portrait image to `public/images/employees/`
+3. Optionally add portrait image to `public/images/team/`
 
 ### Adding a Portfolio Project
 1. Add image to `src/assets/portfolio/` (if local)
