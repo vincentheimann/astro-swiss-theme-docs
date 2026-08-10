@@ -21,6 +21,7 @@ export default defineConfig({
 			],
 			sidebar: [
 				{ label: 'Getting Started', slug: 'getting-started', badge: { text: '10 min', variant: 'tip' } },
+				{ label: 'Setup Wizard', slug: 'guides/setup-wizard', badge: { text: 'Paid', variant: 'note' } },
 				{ label: 'Configuration', slug: 'guides/configuration' },
 				{ label: 'Customization', slug: 'guides/customization' },
 				{ label: 'Styling', slug: 'guides/styling' },

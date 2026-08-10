@@ -15,7 +15,7 @@ import { Steps, Aside, Card, CardGrid } from '@astrojs/starlight/components';
 Welcome! Let's get your site running and customized in about 10 minutes.
 
 <Aside type="note" title="About This Documentation">
-  This documentation covers the **Astro Swiss theme family**. Both themes ship **French, German and English**. The steps below use the **free starter theme**, available on GitHub. Bought the **paid theme**? Extract the purchased ZIP and run the embedded setup wizard instead — the customization steps below apply to both.
+  This documentation covers the **Astro Swiss theme family**. Both themes ship **French, German and English**. The steps below use the **free starter theme**, available on GitHub. Bought the **paid theme**? Extract the purchased ZIP and run the embedded [setup wizard](/guides/setup-wizard/) instead — the customization steps below apply to both.
 </Aside>
 
 ## Install & Run <sup>2 minutes</sup>
@@ -91,9 +91,8 @@ Try it! The theme will update immediately with your brand color.
 
 Open `src/i18n/ui.ts` and find the `fr:` section (French):
 
-```typescript title="src/i18n/ui.ts" {2-5}
+```typescript title="src/i18n/ui.ts" {2-4}
 fr: {
-  'business.name': 'Your Company Name',
   'business.tagline': 'Your tagline here',
   'site.title': 'Your Site Title',
   'site.description': 'Your site description for SEO',
