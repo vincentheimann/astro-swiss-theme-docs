@@ -7,9 +7,9 @@
   # Output directory for Astro
   publish = "dist"
 
-# Node version for build environment
+# Node version for build environment (Astro 7 requires >= 22.12)
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 # Redirects and rewrites
 [[redirects]]
