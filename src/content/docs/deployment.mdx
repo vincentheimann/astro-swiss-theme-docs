@@ -146,17 +146,17 @@ Variables prefixed with `PUBLIC_` are available in client-side code.
 
 **Create `.env` file:**
 ```bash title=".env"
-PUBLIC_SITE_URL=https://yourdomain.com
 PUBLIC_GTM_ID=GTM-XXXXXXX
 ```
+
+The theme reads `PUBLIC_GTM_ID` for analytics; your site URL lives in
+`astro.config.mjs` (`site`), not in `.env`.
 
 **Use in components:**
 ```astro
 ---
-const siteUrl = import.meta.env.PUBLIC_SITE_URL;
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
 ---
-
-<meta property="og:url" content={siteUrl} />
 ```
 
 ### Private Variables

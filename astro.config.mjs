@@ -5,6 +5,10 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://docs.astroswiss.com',
+	// The wizard guide URL lived in delivery emails and bookmarks — keep it alive
+	redirects: {
+		'/guides/setup-wizard/': '/guides/agent-setup/',
+	},
 	integrations: [
 		starlight({
 			title: 'Astro Swiss Theme',
@@ -21,7 +25,7 @@ export default defineConfig({
 			],
 			sidebar: [
 				{ label: 'Getting Started', slug: 'getting-started', badge: { text: '10 min', variant: 'tip' } },
-				{ label: 'Setup Wizard', slug: 'guides/setup-wizard', badge: { text: 'Paid', variant: 'note' } },
+				{ label: 'Agent Setup', slug: 'guides/agent-setup', badge: { text: 'Paid', variant: 'note' } },
 				{ label: 'Configuration', slug: 'guides/configuration' },
 				{ label: 'Customization', slug: 'guides/customization' },
 				{ label: 'Styling', slug: 'guides/styling' },

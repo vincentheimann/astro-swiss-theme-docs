@@ -1,0 +1,116 @@
+---
+title: Agent Setup
+description: Set up the paid Astro Swiss Theme with your AI coding agent — describe your company in one conversation and let one deterministic command write the configuration.
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+**Goal:** Turn the freshly extracted paid theme into *your* site — in one
+conversation with your AI agent, without hand-editing configuration files.
+
+<Aside type="note" title="Paid theme only">
+  The agent workspace and setup command ship with the **paid theme**. Using
+  the free starter theme? Configure it by hand instead — the
+  [Getting Started guide](/getting-started/) walks you through the same files
+  in about 10 minutes.
+</Aside>
+
+## With your AI agent <sup>recommended</sup>
+
+The theme ships ready for agentic coding tools: **Claude Code, Codex, Cursor,
+Antigravity, OpenCode, Gemini CLI, GitHub Copilot, Windsurf, Claude Cowork**.
+Your agent reads the bundled `AGENTS.md` and already knows what to do.
+
+<Steps>
+
+1. **Extract the purchased ZIP** and install dependencies
+
+   ```bash
+   npm install
+   ```
+
+2. **Open the folder in your AI tool** and ask it to set up your site — for
+   example:
+
+   > Set up this theme for my company. We're called …, our domain is …, we
+   > want the site in French and English.
+
+   In Claude Code you can simply run the bundled `/setup` command.
+
+3. **Answer its questions.** The agent collects your company details, drafts
+   SEO titles and descriptions per language for your approval, writes
+   `setup.config.json`, validates it, and runs the setup.
+
+4. **Review the result** — the agent verifies the build and starts
+   `npm run dev` so you can see your site.
+
+</Steps>
+
+## Without an agent <sup>same result, by hand</sup>
+
+The agent drives the exact same command you can run yourself:
+
+<Steps>
+
+1. **Copy the example config**
+
+   ```bash
+   cp setup.config.example.json setup.config.json
+   ```
+
+2. **Fill it in** — company details, site URL (a bare domain is fine), the
+   languages you want (`fr`, `de`, `en` — must include `fr`), an SEO title
+   (30–60 characters) and description (120–160 characters) per language,
+   team members, and an optional Google Tag Manager ID.
+
+3. **Validate** — errors name the exact field to fix, and nothing is written:
+
+   ```bash
+   npm run setup:check
+   ```
+
+4. **Apply**
+
+   ```bash
+   npm run setup
+   ```
+
+</Steps>
+
+## What it writes
+
+Setup is deterministic — the same input always produces the same files — and
+never destructive: every touched file is first backed up to a timestamped
+copy in `.setup-backups/` at the project root.
+
+| File | What happens |
+|---|---|
+| `src/consts.ts` | Regenerated: company information and team members (`COMPANY`, `EMPLOYEES`) |
+| `src/i18n/ui.ts` | Updated in place: language list, site title and description per language — **the full translation dictionary is preserved** |
+| `.env` | Regenerated: your GTM ID (if provided) |
+| `astro.config.mjs` | The `site` URL is patched to your domain |
+| `public/images/team/` | Team portrait files are copied in |
+
+<Aside type="note" title="Languages">
+  The theme ships complete translations and page trees for **French, German
+  and English**; setup lets you choose any subset that includes French (the
+  default locale — existing URL structures depend on it). To genuinely add
+  another language, follow the [Adding Languages guide](/guides/adding-languages/)
+  after setup.
+</Aside>
+
+## After setup
+
+The demo copy beyond the site title/description — navigation labels, service
+descriptions, team bios — still carries the example agency's text. Edit the
+**values** in `src/i18n/ui.ts` per language (never remove keys), or simply
+ask your agent to translate the remaining content for your business.
+
+From here the docs apply to both themes:
+
+- [Configuration](/guides/configuration/) — everything setup wrote, explained file by file
+- [Customization](/guides/customization/) — logo, colors, content
+- [Adding Languages](/guides/adding-languages/) — extend beyond FR/DE/EN
+- [Deployment](/deployment/) — go live
+
+You can re-run setup at any time — each run creates fresh backups first.
