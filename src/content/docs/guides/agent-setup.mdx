@@ -101,10 +101,13 @@ copy in `.setup-backups/` at the project root.
 
 ## After setup
 
-The demo copy beyond the site title/description — navigation labels, service
-descriptions, team bios — still carries the example agency's text. Edit the
-**values** in `src/i18n/ui.ts` per language (never remove keys), or simply
-ask your agent to translate the remaining content for your business.
+Your agent's setup flow includes writing your team members' roles and bios
+(`employee.<ID>.title` / `.bio` in `src/i18n/ui.ts`, per language) — if the
+team cards show names with empty roles, ask your agent to complete that
+step. The demo copy beyond that — navigation labels, service descriptions —
+still carries the example agency's text. Edit the **values** in
+`src/i18n/ui.ts` per language (keep every locale's key set identical), or
+simply ask your agent to translate the remaining content for your business.
 
 From here the docs apply to both themes:
 
